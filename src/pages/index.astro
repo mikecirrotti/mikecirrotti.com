@@ -27,8 +27,9 @@ const projects = (await getCollection('work'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Hello, my name is Mike Cirrotti"
-					tagline="I'm an AI Product leader building at the intersection of insurance, analytics, and artificial intelligence."
+					title="Mike Cirrotti"
+					subtitle="AI Opportunity Architect"
+					tagline="I live in the gap between what organizations know and what AI can build."
 					align="start"
 				>
 					<div class="roles">
@@ -39,7 +40,7 @@ const projects = (await getCollection('work'))
 				</Hero>
 
 				<img
-					alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
+					alt="Mike Cirrotti"
 					width="480"
 					height="620"
 					src="/assets/portrait.jpg"
@@ -48,6 +49,12 @@ const projects = (await getCollection('work'))
 
 			<Skills />
 		</div>
+
+		<section class="pull-quote wrapper">
+			<blockquote>
+				<p>"When execution gets cheap, the value shifts to judgment.<br />I've spent my career building the judgment."</p>
+			</blockquote>
+		</section>
 
 		<main class="wrapper stack gap-20 lg:gap-48">
 			<section class="section with-background with-cta">
@@ -144,6 +151,29 @@ const projects = (await getCollection('work'))
 			aspect-ratio: 3 / 4;
 			border-radius: 4.5rem;
 			object-fit: cover;
+		}
+	}
+
+	/* ====================================================== */
+
+	.pull-quote {
+		text-align: center;
+		padding: 1rem 1.5rem;
+	}
+
+	.pull-quote blockquote {
+		font-size: var(--text-xl);
+		font-style: italic;
+		color: var(--gray-200);
+		max-width: 44ch;
+		margin-inline: auto;
+		border: none;
+		padding: 0;
+	}
+
+	@media (min-width: 50em) {
+		.pull-quote blockquote {
+			font-size: var(--text-2xl);
 		}
 	}
 
