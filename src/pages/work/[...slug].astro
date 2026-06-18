@@ -76,6 +76,8 @@ const { Content } = await render(entry);
 
 	.tags {
 		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: 0.5rem;
 	}
 
@@ -85,6 +87,7 @@ const { Content } = await render(entry);
 	}
 
 	.content {
+		width: 100%;
 		max-width: 65ch;
 		margin-inline: auto;
 	}
