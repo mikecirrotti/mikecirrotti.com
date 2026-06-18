@@ -38,7 +38,7 @@
 	);
 	--gradient-accent-orange: linear-gradient(
 		150deg,
-		#e3b341,
+		var(--accent-light),
 		var(--accent-regular),
 		var(--accent-dark)
 	);
@@ -105,7 +105,7 @@
 	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 81%);
 	--gradient-accent-orange: linear-gradient(
 		150deg,
-		#e3b341,
+		var(--accent-dark),
 		var(--accent-regular),
 		var(--accent-light)
 	);
