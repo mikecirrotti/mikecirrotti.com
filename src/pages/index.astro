@@ -28,8 +28,8 @@ const projects = (await getCollection('work'))
 			<header class="hero">
 				<Hero
 					title="Mike Cirrotti"
-					subtitle="AI Opportunity Architect"
-					tagline="I live in the gap between what organizations know and what AI can build."
+					subtitle="AI Opportunity Translator"
+					tagline="Aligning emerging technology to where it creates business value. Fluent both directions — strategy and build."
 					align="start"
 				>
 					<div class="roles">
@@ -47,6 +47,12 @@ const projects = (await getCollection('work'))
 				/>
 			</header>
 
+			<p class="skills-intro">
+				Most AI projects stall in the gap between what the business needs and
+				what the technology can do. I work both sides of that gap — from
+				executive strategy to the technical build, so the technology earns its place.
+			</p>
+
 			<Skills />
 		</div>
 
@@ -60,7 +66,7 @@ const projects = (await getCollection('work'))
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Selected Work</h3>
-					<p>Take a look below at some of my featured work for clients from the past few years.</p>
+					<p>Where I've matched a real problem to the right emerging technology — and built to prove the value.</p>
 				</header>
 
 				<div class="gallery">
@@ -114,6 +120,20 @@ const projects = (await getCollection('work'))
 </BaseLayout>
 
 <style>
+	.skills-intro {
+		max-width: 55ch;
+		margin-inline: auto;
+		text-align: center;
+		color: var(--gray-300);
+		font-size: var(--text-md);
+	}
+
+	@media (min-width: 50em) {
+		.skills-intro {
+			font-size: var(--text-lg);
+		}
+	}
+
 	.hero {
 		display: flex;
 		flex-direction: column;
