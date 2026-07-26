@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="About | Mike Cirrotti" description="Mike Cirrotti — AI Opportunity Architect living in the gap between what organizations know and what AI can build.">
+<BaseLayout title="About | Mike Cirrotti" description="Mike Cirrotti — AI Opportunity Translator living in the gap between what organizations know and what AI can build.">
 	<div class="stack gap-20">
 		<main class="wrapper about">
 			<Hero
@@ -22,6 +22,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			<section>
 				<h2 class="section-title">Background</h2>
 				<div class="content">
+					<p class="standfirst"><em>I work from strategy to build: sitting with the business to match the right problems to the right emerging tech, then with the technical minds who prototype it, prove the value, and scale what earns it.</em></p>
 					<p>
 						For the first decade of my career, I advanced through data analytics roles — eventually leading a team — and kept finding myself in the same place: between the people who understood the business and the people who could build for it.
 					</p>
@@ -89,7 +90,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					</p>
 					<p>
 						<strong>2025–Present · Innovation Lab, Fortune 100 P&C Insurer</strong><br />
-						Joined a dedicated innovation lab. Prototyping agentic AI and GenAI solutions for the property and casualty insurance domain — without an engineering title, by design. Analytics translator becomes AI Opportunity Architect. Same gap. New tools. Higher stakes.
+						Joined a dedicated innovation lab. Prototyping agentic AI and GenAI solutions for the property and casualty insurance domain — without an engineering title, by design. Analytics translator becomes AI Opportunity Translator. Same gap. New tools. Higher stakes.
 					</p>
 				</div>
 			</section>
@@ -106,6 +107,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
+	.standfirst {
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+	}
+
+	@media (min-width: 50em) {
+		.standfirst {
+			font-size: var(--text-xl);
+		}
+	}
+
 	.about {
 		display: flex;
 		flex-direction: column;
