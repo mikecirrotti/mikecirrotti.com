@@ -2,6 +2,10 @@
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// About-page hero image. Temporarily removed — set this to an asset path
+// (e.g. '/assets/at-work.png') to show a photo here again.
+const aboutHeroImage: string | null = null;
 ---
 
 <BaseLayout title="About | Mike Cirrotti" description="Mike Cirrotti — AI Opportunity Translator living in the gap between what organizations know and what AI can build.">
@@ -11,12 +15,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				title="About"
 				tagline="The gap I've always lived in — and how it keeps moving."
 			>
-				<img
-					width="1553"
-					height="873"
-					src="/assets/at-work.png"
-					alt="Mike Cirrotti at work"
-				/>
+				{aboutHeroImage && (
+					<img
+						width="1553"
+						height="873"
+						src={aboutHeroImage}
+						alt="Mike Cirrotti at work"
+					/>
+				)}
 			</Hero>
 
 			<section>
