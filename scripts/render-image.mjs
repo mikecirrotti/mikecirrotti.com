@@ -6,15 +6,15 @@
  * Writes public/assets/engram-wiki.svg (editable source) and
  * public/assets/engram-wiki.jpg (the file the site actually ships).
  *
- * Concept — "river into lakes, wired". Raw daily signal streams in from the
- * left as loose particles, consolidates into a few luminous basins (topics,
- * projects, people, decisions), and those basins are wired together by
- * filaments: the enduring trace the project is named for.
+ * Concept — "trace through the scaffold". A repository's worth of dormant
+ * markdown lines, most of it unlit, which is literally true of a repo that
+ * ships intentionally empty. One memory trace is written through the field,
+ * and the files it touches light up.
  *
- * Colors are lifted verbatim from src/styles/global.css. No dependencies —
- * the JPEG comes out of Chromium's own encoder over CDP, because the ffmpeg
- * bundled with Playwright is built --disable-everything and has no JPEG
- * encoder to convert through.
+ * Colors are lifted from src/styles/global.css. No dependencies — the JPEG
+ * comes out of Chromium's own encoder over CDP, because the ffmpeg bundled
+ * with Playwright is built --disable-everything and has no JPEG encoder to
+ * convert through.
  */
 
 import { spawn } from 'node:child_process';
@@ -32,15 +32,13 @@ const H = 871;
 
 // Palette — src/styles/global.css
 const ACCENT_LIGHT = '#3da876'; // --accent-light
-const ACCENT_REGULAR = '#0c7a47'; // --accent-regular
-const ACCENT_DARK = '#04240f'; // --accent-dark
 const SLATE = '#141925'; // --gray-50 light, for the cool corner shadow
 const PALE = '#e3e6ee'; // --gray-800 light
-const GLOW = '#8ceec0'; // lifted tint of --accent-light, for cores and nodes
+const GLOW = '#8ceec0'; // lifted tint of --accent-light
 
-// The card on /work and / is single-column at 11rem below 50em, which crops to
-// roughly the middle 40% of the image's height. Everything load-bearing stays
-// inside this band; only soft glow is allowed to bleed past it.
+// The card is single-column at 11rem below 50em, which crops to roughly the
+// middle 40% of the image's height. The trace stays inside this band; the
+// scaffold fills the whole frame, so the crop always has texture.
 const SAFE_TOP = 270;
 const SAFE_BOTTOM = 610;
 
@@ -65,161 +63,162 @@ function gradient150(w, h) {
 	const dx = 0.5;
 	const dy = 0.8660254;
 	const len = Math.abs(w * dx) + Math.abs(h * dy);
-	const cx = w / 2;
-	const cy = h / 2;
 	return {
-		x1: r2(cx - (dx * len) / 2),
-		y1: r2(cy - (dy * len) / 2),
-		x2: r2(cx + (dx * len) / 2),
-		y2: r2(cy + (dy * len) / 2),
+		x1: r2(w / 2 - (dx * len) / 2),
+		y1: r2(h / 2 - (dy * len) / 2),
+		x2: r2(w / 2 + (dx * len) / 2),
+		y2: r2(h / 2 + (dy * len) / 2),
 	};
 }
 
-// The four basins. Ordered back-to-front; the first is the big lake.
-const BASINS = [
-	{ cx: 880, cy: 390, rx: 155, ry: 112, core: 0.95 }, // topics
-	{ cx: 1185, cy: 505, rx: 104, ry: 74, core: 0.8 }, // projects
-	{ cx: 985, cy: 578, rx: 86, ry: 58, core: 0.72 }, // people
-	{ cx: 672, cy: 498, rx: 60, ry: 43, core: 0.62 }, // decisions — first consolidation
+/* ---------------- the trace ---------------- */
+
+// Deliberately irregular. A smooth sine reads as decoration rather than as a
+// path something actually took.
+const TRACE = [
+	[[26, 505], [150, 560], [214, 592], [326, 566]],
+	[[326, 566], [452, 538], [452, 372], [598, 356]],
+	[[598, 356], [712, 344], [742, 430], [846, 452]],
+	[[846, 452], [962, 476], [1010, 574], [1136, 546]],
+	[[1136, 546], [1244, 522], [1262, 424], [1382, 408]],
+	[[1382, 408], [1420, 403], [1436, 400], [1462, 396]],
 ];
 
-// Filaments: [x1,y1, cx1,cy1, cx2,cy2, x2,y2, width, opacity]
-// The B4 → B1 → B2 run is the bright consolidated trace. Curves are kept from
-// crossing each other — a stray intersection reads as an accidental shape
-// rather than a connection.
-const FILAMENTS = [
-	// tributaries out of the particle field, converging on B4's left side
-	[340, 430, 440, 428, 540, 452, 638, 484, 1.6, 0.32],
-	[352, 566, 452, 566, 545, 534, 640, 506, 1.6, 0.28],
-	// the trace
-	[688, 478, 760, 430, 800, 400, 872, 390, 3.0, 0.82],
-	[900, 396, 1010, 410, 1080, 452, 1178, 496, 2.6, 0.74],
-	// secondary links
-	[886, 420, 920, 490, 946, 530, 976, 562, 1.9, 0.5],
-	[1010, 570, 1080, 552, 1120, 528, 1168, 512, 1.7, 0.44],
-	[726, 486, 820, 520, 880, 552, 962, 572, 1.5, 0.3],
-	// recall / export — fanning off toward the right edge
-	[1216, 486, 1290, 462, 1350, 442, 1424, 420, 1.8, 0.34],
-	[1216, 520, 1292, 534, 1352, 546, 1428, 560, 1.4, 0.22],
-];
+function cubic(p0, p1, p2, p3, t) {
+	const u = 1 - t;
+	return [
+		u * u * u * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t * t * t * p3[0],
+		u * u * u * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t * t * t * p3[1],
+	];
+}
 
-// Nodes sit where filaments meet: basin centers plus a couple of junctions.
-const NODES = [
-	{ x: 880, y: 390, r: 6 },
-	{ x: 1185, y: 505, r: 5 },
-	{ x: 985, y: 578, r: 4.5 },
-	{ x: 672, y: 498, r: 4 },
-	{ x: 1214, y: 492, r: 3 },
-];
-
-function buildParticles() {
-	const rand = rng(20260609); // publishDate, because it had to be something
-	const out = [];
-	for (let i = 0; i < 320; i++) {
-		const t = rand();
-		// Bias toward the left: the river is dense at its source and thins out.
-		const x = 30 + Math.pow(t, 1.55) * 760;
-		// Centerline drifts gently upward as the flow moves right.
-		const center = 496 - Math.pow(x / 790, 2) * 40;
-		// Spread is wide at the source and narrows as the flow consolidates.
-		const spread = 158 - (x / 790) * 92;
-		const g = (rand() + rand() + rand() - 1.5) / 1.5; // ~gaussian, clamped
-		const y = center + g * spread;
-		if (y < 190 || y > 780) continue;
-
-		const near = 1 - Math.min(1, Math.abs(g));
-		const radius = r2(1.4 + rand() * 3.4 * (0.45 + near * 0.55));
-		const opacity = r2(0.22 + rand() * 0.62 * (0.4 + near * 0.6));
-		// Mostly luminous green so the field reads as signal, not gravel; a few
-		// hot and a few pale flecks keep it from looking uniform.
-		const tint = rand();
-		const fill = tint > 0.92 ? PALE : tint > 0.66 ? GLOW : ACCENT_LIGHT;
-		out.push(
-			`<circle cx="${r2(x)}" cy="${r2(y)}" r="${radius}" fill="${fill}" opacity="${opacity}"/>`,
-		);
+function samplePath(segs, per = 160) {
+	const pts = [];
+	for (const [p0, p1, p2, p3] of segs) {
+		for (let i = 0; i <= per; i++) pts.push(cubic(p0, p1, p2, p3, i / per));
 	}
-	return out.join('');
+	return pts;
 }
 
-function buildBasins() {
-	// No rim stroke: a hard outline turns a pool into a drawn orbit.
-	return BASINS.map((b, i) => {
-		const halo = `<ellipse cx="${b.cx}" cy="${b.cy}" rx="${r2(b.rx * 2.4)}" ry="${r2(b.ry * 2.4)}" fill="url(#halo${i})"/>`;
-		const body = `<ellipse cx="${b.cx}" cy="${b.cy}" rx="${b.rx}" ry="${b.ry}" fill="url(#pool${i})" opacity="${b.core}"/>`;
-		return halo + body;
-	}).join('');
+function pathD(segs) {
+	let d = `M${segs[0][0][0]} ${segs[0][0][1]}`;
+	for (const [, p1, p2, p3] of segs) d += `C${p1[0]} ${p1[1]} ${p2[0]} ${p2[1]} ${p3[0]} ${p3[1]}`;
+	return d;
 }
 
-function buildFilaments() {
-	return FILAMENTS.map(([x1, y1, c1x, c1y, c2x, c2y, x2, y2, w, o]) => {
-		return `<path d="M${x1} ${y1}C${c1x} ${c1y} ${c2x} ${c2y} ${x2} ${y2}" fill="none" stroke="url(#filament)" stroke-width="${w}" stroke-linecap="round" opacity="${o}"/>`;
-	}).join('');
+function minDist(pts, x, y) {
+	let m = Infinity;
+	for (let i = 0; i < pts.length; i++) {
+		const dx = pts[i][0] - x;
+		const dy = pts[i][1] - y;
+		const d = dx * dx + dy * dy;
+		if (d < m) m = d;
+	}
+	return Math.sqrt(m);
 }
 
-function buildNodes() {
-	return NODES.map(
-		(n) =>
-			`<circle cx="${n.x}" cy="${n.y}" r="${r2(n.r * 3.4)}" fill="url(#node)"/>` +
-			`<circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${PALE}" opacity="0.92"/>`,
-	).join('');
+/* ---------------- the scaffold ---------------- */
+
+const PITCH_X = 132;
+const PITCH_Y = 96;
+const LINE_GAP = 10.5;
+
+/**
+ * A grid of file blocks. Brightness is decided per *block*, not per line —
+ * the trace touches a file and the whole file becomes known, rather than
+ * slicing a lit channel through the middle of half-lit files.
+ */
+function buildScaffold(pts) {
+	const rand = rng(20260609);
+	const dim = [];
+	const mid = [];
+	const hot = [];
+	const marks = [];
+
+	for (let gx = 0; gx * PITCH_X < W + 60; gx++) {
+		// Per-column jitter, so the field reads as files rather than a table.
+		const jx = rand() * 14 - 7;
+		const jy = rand() * 18 - 9;
+		for (let gy = 0; gy * PITCH_Y < H + 40; gy++) {
+			const x0 = r2(gx * PITCH_X + 26 + jx + rand() * 6);
+			const y0 = r2(gy * PITCH_Y + 30 + jy + rand() * 6);
+
+			// Mild left-to-right accretion: the field fills in over time.
+			const accrete = x0 / W;
+			const n = 3 + Math.floor(rand() * 4) + (rand() < accrete * 0.7 ? 1 : 0);
+
+			// Distance from the trace to the block's centre of mass.
+			const bw = 62;
+			const bh = (n - 1) * LINE_GAP;
+			const d = minDist(pts, x0 + bw / 2, y0 + bh / 2);
+			const tier = d < 62 ? 2 : d < 148 ? 1 : 0;
+			const heat = tier === 2 ? 1 - d / 62 : tier === 1 ? 1 - (d - 62) / 86 : 0;
+
+			for (let i = 0; i < n; i++) {
+				const y = r2(y0 + i * LINE_GAP);
+				// First line is a heading: shorter and brighter, like a markdown file.
+				const head = i === 0;
+				const len = r2(head ? 26 + rand() * 30 : 18 + rand() * 62);
+				const bar = (w, fill, op) =>
+					`<rect x="${x0}" y="${r2(y - w / 2)}" width="${len}" height="${w}" rx="${r2(w / 2)}" fill="${fill}" opacity="${op}"/>`;
+
+				if (tier === 2) {
+					hot.push(bar(head ? 3.2 : 2.6, PALE, r2(0.5 + heat * 0.46)));
+					// Bullet dots read as markdown lists at hero size.
+					if (!head && rand() < 0.42) {
+						hot.push(
+							`<circle cx="${r2(x0 - 6)}" cy="${y}" r="1.5" fill="${GLOW}" opacity="${r2(0.4 + heat * 0.45)}"/>`,
+						);
+					}
+				} else if (tier === 1) {
+					mid.push(bar(head ? 2.5 : 2.1, head ? GLOW : ACCENT_LIGHT, r2(0.11 + heat * 0.31)));
+				} else {
+					const base = (head ? 0.09 : 0.055) + accrete * 0.03;
+					dim.push(bar(head ? 2.1 : 1.8, head ? GLOW : ACCENT_LIGHT, r2(base + rand() * 0.045)));
+				}
+			}
+
+			// One file marker per lit block, at the block's own origin.
+			if (tier === 2 && heat > 0.35) {
+				marks.push(
+					`<rect x="${r2(x0 - 15)}" y="${r2(y0 - 8)}" width="12" height="12" rx="3" fill="none" stroke="${GLOW}" stroke-width="1.5" opacity="${r2(0.55 + heat * 0.4)}"/>`,
+				);
+			}
+		}
+	}
+	return { dim, mid, hot, marks };
 }
 
 function buildSvg() {
 	const g = gradient150(W, H);
-	const poolDefs = BASINS.map(
-		(b, i) =>
-			// A plateau through the middle, then a soft fade: enough body to read
-			// as a consolidated pool, no hard edge that would read as a drawn
-			// orbit. Cores stay emerald — the bloom pass supplies brightness.
-			`<radialGradient id="pool${i}">` +
-			`<stop offset="0" stop-color="${GLOW}" stop-opacity="0.52"/>` +
-			`<stop offset="0.42" stop-color="${ACCENT_LIGHT}" stop-opacity="0.56"/>` +
-			`<stop offset="0.74" stop-color="${ACCENT_LIGHT}" stop-opacity="0.34"/>` +
-			`<stop offset="1" stop-color="${ACCENT_REGULAR}" stop-opacity="0"/>` +
-			`</radialGradient>` +
-			// Long, gentle falloff so the halo has no discernible edge.
-			`<radialGradient id="halo${i}">` +
-			`<stop offset="0" stop-color="${ACCENT_LIGHT}" stop-opacity="0.2"/>` +
-			`<stop offset="0.35" stop-color="${ACCENT_LIGHT}" stop-opacity="0.11"/>` +
-			`<stop offset="0.68" stop-color="${ACCENT_LIGHT}" stop-opacity="0.04"/>` +
-			`<stop offset="1" stop-color="${ACCENT_LIGHT}" stop-opacity="0"/>` +
-			`</radialGradient>`,
-	).join('');
+	const pts = samplePath(TRACE);
+	const { dim, mid, hot, marks } = buildScaffold(pts);
+	const d = pathD(TRACE);
 
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img">
 <defs>
 <linearGradient id="ground" gradientUnits="userSpaceOnUse" x1="${g.x1}" y1="${g.y1}" x2="${g.x2}" y2="${g.y2}">
-<stop offset="0" stop-color="${ACCENT_DARK}"/>
-<stop offset="0.3" stop-color="#073a1e"/>
-<stop offset="0.54" stop-color="${ACCENT_REGULAR}"/>
-<stop offset="0.78" stop-color="#06351b"/>
-<stop offset="1" stop-color="${ACCENT_DARK}"/>
+<stop offset="0" stop-color="#02150a"/>
+<stop offset="0.34" stop-color="#07401f"/>
+<stop offset="0.56" stop-color="#0a5c33"/>
+<stop offset="0.8" stop-color="#052d16"/>
+<stop offset="1" stop-color="#02150a"/>
 </linearGradient>
-<radialGradient id="lift" gradientUnits="userSpaceOnUse" cx="930" cy="452" r="620">
-<stop offset="0" stop-color="${ACCENT_LIGHT}" stop-opacity="0.28"/>
-<stop offset="0.6" stop-color="${ACCENT_REGULAR}" stop-opacity="0.08"/>
-<stop offset="1" stop-color="${ACCENT_REGULAR}" stop-opacity="0"/>
+<radialGradient id="vignette" gradientUnits="userSpaceOnUse" cx="736" cy="436" r="880">
+<stop offset="0.42" stop-color="#000000" stop-opacity="0"/>
+<stop offset="1" stop-color="#000000" stop-opacity="0.62"/>
 </radialGradient>
-<radialGradient id="coolshadow" gradientUnits="userSpaceOnUse" cx="120" cy="90" r="720">
-<stop offset="0" stop-color="${SLATE}" stop-opacity="0.5"/>
+<radialGradient id="coolshadow" gradientUnits="userSpaceOnUse" cx="120" cy="90" r="700">
+<stop offset="0" stop-color="${SLATE}" stop-opacity="0.45"/>
 <stop offset="1" stop-color="${SLATE}" stop-opacity="0"/>
 </radialGradient>
-<radialGradient id="node">
-<stop offset="0" stop-color="${GLOW}" stop-opacity="0.55"/>
-<stop offset="1" stop-color="${GLOW}" stop-opacity="0"/>
-</radialGradient>
-<radialGradient id="current">
-<stop offset="0" stop-color="${ACCENT_LIGHT}" stop-opacity="0.26"/>
-<stop offset="1" stop-color="${ACCENT_LIGHT}" stop-opacity="0"/>
-</radialGradient>
-<linearGradient id="filament" gradientUnits="userSpaceOnUse" x1="620" y1="540" x2="1420" y2="400">
+<linearGradient id="trace" gradientUnits="userSpaceOnUse" x1="80" y1="560" x2="1420" y2="380">
 <stop offset="0" stop-color="${ACCENT_LIGHT}"/>
-<stop offset="0.5" stop-color="${GLOW}"/>
+<stop offset="0.45" stop-color="${GLOW}"/>
 <stop offset="1" stop-color="${PALE}"/>
 </linearGradient>
-${poolDefs}
-<filter id="bloom" x="-25%" y="-25%" width="150%" height="150%">
-<feGaussianBlur stdDeviation="22"/>
+<filter id="bloom" x="-30%" y="-30%" width="160%" height="160%">
+<feGaussianBlur stdDeviation="14"/>
 </filter>
 <filter id="grain" x="0" y="0" width="100%" height="100%">
 <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch" result="n"/>
@@ -228,23 +227,21 @@ ${poolDefs}
 </defs>
 
 <rect width="${W}" height="${H}" fill="url(#ground)"/>
-<rect width="${W}" height="${H}" fill="url(#lift)"/>
 <rect width="${W}" height="${H}" fill="url(#coolshadow)" style="mix-blend-mode:multiply"/>
 
-<g style="mix-blend-mode:screen">
-<ellipse cx="330" cy="492" rx="420" ry="118" fill="url(#current)" filter="url(#bloom)" opacity="0.5"/>
-<g opacity="0.85">${buildParticles()}</g>
+<g>${dim.join('')}</g>
+<g>${mid.join('')}</g>
+<g style="mix-blend-mode:screen" opacity="0.5" filter="url(#bloom)"><g>${hot.join('')}</g></g>
+<g>${hot.join('')}</g>
+
+<g style="mix-blend-mode:screen" opacity="0.55" filter="url(#bloom)">
+<path d="${d}" fill="none" stroke="${GLOW}" stroke-width="6" stroke-linecap="round"/>
 </g>
+<path d="${d}" fill="none" stroke="url(#trace)" stroke-width="2.4" stroke-linecap="round" opacity="0.95"/>
+<g style="mix-blend-mode:screen">${marks.join('')}</g>
 
-<g style="mix-blend-mode:screen" opacity="0.26" filter="url(#bloom)">${buildBasins()}</g>
-<g style="mix-blend-mode:screen">${buildBasins()}</g>
-
-<g style="mix-blend-mode:screen" opacity="0.45" filter="url(#bloom)">${buildFilaments()}</g>
-<g style="mix-blend-mode:screen">${buildFilaments()}</g>
-
-<g style="mix-blend-mode:screen">${buildNodes()}</g>
-
-<rect width="${W}" height="${H}" filter="url(#grain)" opacity="0.055" style="mix-blend-mode:overlay"/>
+<rect width="${W}" height="${H}" fill="url(#vignette)"/>
+<rect width="${W}" height="${H}" filter="url(#grain)" opacity="0.05" style="mix-blend-mode:overlay"/>
 </svg>
 `;
 }
@@ -303,7 +300,7 @@ async function rasterize(svg) {
 	writeFileSync(
 		htmlPath,
 		`<!doctype html><meta charset="utf-8"><style>
-			html,body{margin:0;padding:0;background:${ACCENT_DARK};overflow:hidden}
+			html,body{margin:0;padding:0;background:#02150a;overflow:hidden}
 			svg{display:block;width:${W}px;height:${H}px}
 		</style>${svg}`,
 	);
@@ -336,11 +333,12 @@ async function rasterize(svg) {
 			mobile: false,
 		});
 		// SVG filters (turbulence, blur) need a beat to settle before capture.
-		await new Promise((r) => setTimeout(r, 700));
+		// Note: captureBeyondViewport must stay off — it suppresses filter and
+		// background rendering in this Chromium build.
+		await new Promise((r) => setTimeout(r, 900));
 		const { data } = await cdp.send('Page.captureScreenshot', {
 			format: 'jpeg',
 			quality: 92,
-			captureBeyondViewport: true,
 			clip: { x: 0, y: 0, width: W, height: H, scale: 1 },
 		});
 		cdp.close();
@@ -358,4 +356,4 @@ console.log(`wrote ${OUT_SVG} (${(svg.length / 1024).toFixed(1)} KB)`);
 const jpg = await rasterize(svg);
 writeFileSync(OUT_JPG, jpg);
 console.log(`wrote ${OUT_JPG} (${(jpg.length / 1024).toFixed(1)} KB, ${W}x${H})`);
-console.log(`safe band for the 11rem card crop: y ${SAFE_TOP}–${SAFE_BOTTOM}`);
+console.log(`trace stays within the card-crop safe band: y ${SAFE_TOP}–${SAFE_BOTTOM}`);

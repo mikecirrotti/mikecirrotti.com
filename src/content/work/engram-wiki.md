@@ -2,7 +2,7 @@
 title: Engram Wiki
 publishDate: 2026-06-09 00:00:00
 img: /assets/engram-wiki.jpg
-img_alt: An emerald field in which scattered particles of raw signal flow in from the left and consolidate into glowing pools, wired together by fine filaments
+img_alt: A dark emerald field filled with dim rows of markdown text, most of it unlit, with a single luminous trace curving through it and lighting up the files it passes
 description: |
   An open-source pattern for giving an AI assistant durable, persistent memory about your work — a git repository of markdown files an LLM can read to answer as someone who already knows your context.
 tags:
