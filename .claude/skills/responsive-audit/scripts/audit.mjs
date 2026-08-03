@@ -10,6 +10,8 @@
  *
  * Usage:
  *   node .claude/skills/responsive-audit/scripts/audit.mjs [--base http://localhost:4321] [--out .responsive-audit]
+ *     [--widths 360,1440]   subset of widths for a quick targeted run
+ *     [--pages /,/work/]    subset of pages (comma-separated routes)
  *
  * Requires: playwright-core (`npm i --no-save playwright-core`) and a Chromium/Chrome
  * binary (auto-detected; override with CHROME_PATH). Run `npm run build` and
@@ -125,10 +127,14 @@ function inspect(viewportWidth) {
 		if (!isContainer) continue;
 		const box = el.getBoundingClientRect();
 		if (box.height < 20) continue;
+		// Threshold is 2px per edge: centered content splits its overflow between
+		// top and bottom, so a per-edge check with a tight threshold is needed to
+		// catch e.g. an 8px-total overflow in a vertically centered card.
 		for (const child of el.querySelectorAll('*')) {
 			const cr = child.getBoundingClientRect();
-			if (cr.height > 0 && cr.bottom > box.bottom + 4 && getComputedStyle(child).position === 'static') {
-				findings.containerEscape.push(`${label(child)} bottom=${Math.round(cr.bottom)} escapes ${label(el)} bottom=${Math.round(box.bottom)} "${(child.textContent || '').trim().slice(0, 50)}"`);
+			const escapes = cr.height > 0 && (cr.bottom > box.bottom + 2 || cr.top < box.top - 2);
+			if (escapes && getComputedStyle(child).position === 'static') {
+				findings.containerEscape.push(`${label(child)} top=${Math.round(cr.top)}/bottom=${Math.round(cr.bottom)} escapes ${label(el)} top=${Math.round(box.top)}/bottom=${Math.round(box.bottom)} "${(child.textContent || '').trim().slice(0, 50)}"`);
 				break;
 			}
 		}
@@ -143,12 +149,14 @@ function inspect(viewportWidth) {
 }
 
 // ---------------------------------------------------------------- main
-const WIDTHS = [320, 360, 390, 768, 1024, 1440];
-const BREAKPOINT_EDGES = [767, 768, 799, 800]; // nav-state probe only, no screenshots
+const widthsArg = argVal('--widths', null);
+const WIDTHS = widthsArg ? widthsArg.split(',').map(Number) : [320, 360, 390, 768, 1024, 1440];
+const BREAKPOINT_EDGES = widthsArg ? [] : [767, 768, 799, 800]; // nav-state probe only, no screenshots
 // Screenshots: light theme at every width; dark theme at phone + laptop reference widths.
-const DARK_WIDTHS = [390, 1440];
+const DARK_WIDTHS = widthsArg ? [] : [390, 1440];
 
-const pages = discoverPages();
+const pagesArg = argVal('--pages', null);
+const pages = pagesArg ? pagesArg.split(',').map((p) => (p.endsWith('/') || p === '/' ? p : p + '/')) : discoverPages();
 console.log(`Auditing ${BASE} — ${pages.length} pages: ${pages.join(' ')}`);
 const browser = await launchBrowser();
 const summary = { base: BASE, generatedAt: new Date().toISOString(), pages: {}, navByWidth: {}, issues: [] };
