@@ -1,8 +1,8 @@
 ---
 title: Engram Wiki
 publishDate: 2026-06-09 00:00:00
-img: /assets/stock-2.jpg
-img_alt: A network of connected nodes representing a knowledge graph
+img: /assets/engram-wiki.jpg
+img_alt: An emerald field in which scattered particles of raw signal flow in from the left and consolidate into glowing pools, wired together by fine filaments
 description: |
   An open-source pattern for giving an AI assistant durable, persistent memory about your work — a git repository of markdown files an LLM can read to answer as someone who already knows your context.
 tags:
