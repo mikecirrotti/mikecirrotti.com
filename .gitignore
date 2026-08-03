@@ -1,5 +1,7 @@
 # build output
 dist/
+# responsive-audit skill output
+.responsive-audit/
 # generated types
 .astro/
 
