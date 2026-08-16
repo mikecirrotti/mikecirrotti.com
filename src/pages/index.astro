@@ -282,7 +282,10 @@ const projects = (await getCollection('work'))
 
 	.mention-card {
 		display: flex;
-		height: 7rem;
+		/* min-height, not height: the longer entries need more than 7rem on
+		   narrow screens and were spilling onto the border. */
+		min-height: 7rem;
+		padding: 1rem 1.25rem;
 		justify-content: center;
 		align-items: center;
 		text-align: center;
@@ -296,7 +299,7 @@ const projects = (await getCollection('work'))
 	@media (min-width: 50em) {
 		.mention-card {
 			border-radius: 1.5rem;
-			height: 9.5rem;
+			min-height: 9.5rem;
 		}
 	}
 </style>
