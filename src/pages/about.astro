@@ -3,8 +3,10 @@ import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// About-page hero image. Temporarily removed — set this to an asset path
-// (e.g. '/assets/at-work.png') to show a photo here again.
+// About-page hero image. Deliberately absent — do not restore from
+// public/assets/at-work.{jpg,png}. Those are leftover Astro-template stock
+// photos of people who aren't Mike, so they can't ship under this alt text.
+// Point this at a real photograph to bring the image back.
 const aboutHeroImage: string | null = null;
 ---
 
@@ -47,34 +49,34 @@ const aboutHeroImage: string | null = null;
 					<p>
 						What grounds all of it is something harder to name: a practiced ability to imagine being the person on the other end. The end user. The business stakeholder. The person who will actually use this. Good AI work requires knowing what's technically possible <em>and</em> what a real person actually needs — and holding both at once.
 					</p>
-					<p>That's the gap I've always lived in. It just keeps moving.</p>
+					<p class="closing">That's the gap I've always lived in. It just keeps moving.</p>
 				</div>
 			</section>
 			<section>
 				<h2 class="section-title">What I Bring</h2>
-				<div class="content">
+				<div class="content pillars">
+					<h3>Problem Shape Recognition</h3>
 					<p>
-						<strong>Problem Shape Recognition</strong><br />
 						The ability to sense which business problems are genuinely suited to AI solutions — and which aren't. This is harder than it sounds and more valuable than execution. Before you can build the right thing, someone has to ask the right question.
 					</p>
+					<h3>Full-Register Fluency</h3>
 					<p>
-						<strong>Full-Register Fluency</strong><br />
 						Equally comfortable in the strategic big picture with non-technical stakeholders and in the technical weeds with engineers. Not many people can move between those registers in the same conversation. I've built that range deliberately.
 					</p>
+					<h3>Deliberate Adjacency</h3>
 					<p>
-						<strong>Deliberate Adjacency</strong><br />
 						At every stage, I've invested in the layer that wasn't required. As an analyst: data science fluency and domain depth. In my current role: firsthand AI prototyping without an engineering title. The job description has never been the ceiling.
 					</p>
+					<h3>Domain-Grounded AI Literacy</h3>
 					<p>
-						<strong>Domain-Grounded AI Literacy</strong><br />
 						Ten years in data analytics, now applied to LLMs and agentic systems. Not engineering — but genuine, firsthand familiarity with how these systems work, where they fail, and how to direct them toward problems worth solving.
 					</p>
+					<h3>End User Empathy</h3>
 					<p>
-						<strong>End User Empathy</strong><br />
 						A practiced instinct for imagining the person on the other end of the work. In an era when it's easy to optimize for what's technically impressive, this is what keeps the human in focus. It's what made the analytics translator identity work, and it's what makes the AI work worth doing.
 					</p>
+					<h3>High-Agency Orientation</h3>
 					<p>
-						<strong>High-Agency Orientation</strong><br />
 						A bias toward building, shipping, and learning rather than waiting for structures to carry the work forward. The future belongs to people who combine domain depth with the agency to act on it. That's the combination I'm building toward.
 					</p>
 				</div>
@@ -82,28 +84,29 @@ const aboutHeroImage: string | null = null;
 			<section>
 				<h2 class="section-title">Career Arc</h2>
 				<div class="content">
-					<p>
-						<strong>2014–2015 · Economic Consulting</strong><br />
-						Started out in economic consulting — experience with econometrics and data analysis in a variety of industry contexts.
-					</p>
-					<p>
-						<strong>2016–2024 · Data Analytics → Team Leadership</strong><br />
-						Advanced through analytics roles at a Fortune 100 P&C insurer, ultimately managing a data analytics team. Practiced the analytics translator identity before it had a name — bridging technical practitioners and business stakeholders. Invested in data science fluency and domain expertise beyond what the role required.
-					</p>
-					<p>
-						<strong>2018 · External Validation</strong><br />
-						McKinsey publishes <em>"Analytics Translator: The New Must-Have Role"</em> in Harvard Business Review. Confirmation of what was already a lived practice.
-					</p>
-					<p>
-						<strong>2025–Present · Innovation Lab, Fortune 100 P&C Insurer</strong><br />
-						Joined a dedicated innovation lab. Prototyping agentic AI and GenAI solutions for the property and casualty insurance domain — without an engineering title, by design. Analytics translator becomes AI Opportunity Translator. Same gap. New tools. Higher stakes.
-					</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Education</h2>
-				<div class="content">
-					<p>MBA</p>
+					<ol class="arc">
+						<li class="arc-item">
+							<p class="arc-date">2014–2015</p>
+							<h3>Economic Consulting</h3>
+							<p>Started out in economic consulting — experience with econometrics and data analysis in a variety of industry contexts.</p>
+						</li>
+						<li class="arc-item">
+							<p class="arc-date">2016–2024</p>
+							<h3>Data Analytics → Team Leadership</h3>
+							<p>Advanced through analytics roles at a Fortune 100 P&C insurer, ultimately managing a data analytics team. Practiced the analytics translator identity before it had a name — bridging technical practitioners and business stakeholders. Invested in data science fluency and domain expertise beyond what the role required.</p>
+						</li>
+						<li class="arc-item">
+							<p class="arc-date">2018</p>
+							<h3>External Validation</h3>
+							<p>McKinsey publishes <em>"Analytics Translator: The New Must-Have Role"</em> in Harvard Business Review. Confirmation of what was already a lived practice.</p>
+						</li>
+						<li class="arc-item">
+							<p class="arc-date">2025–Present</p>
+							<h3>Innovation Lab, Fortune 100 P&C Insurer</h3>
+							<p>Joined a dedicated innovation lab. Prototyping agentic AI and GenAI solutions for the property and casualty insurance domain — without an engineering title, by design. Analytics translator becomes AI Opportunity Translator. Same gap. New tools. Higher stakes.</p>
+						</li>
+					</ol>
+					<p class="education">Education · MBA</p>
 				</div>
 			</section>
 		</main>
@@ -139,19 +142,115 @@ const aboutHeroImage: string | null = null;
 	section {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		/* Below 50em the section label sits directly above the first pillar
+		   heading with nothing but this gap to separate two similar-sized
+		   headings, so it needs more than the 0.5rem the rest of the site uses.
+		   Irrelevant at 50em+, where sections become `display: contents`. */
+		gap: 1.5rem;
 		color: var(--gray-200);
 	}
 
 	.section-title {
-		grid-column-start: 1;
 		font-size: var(--text-xl);
 		color: var(--gray-0);
 	}
 
+	/* Below 50em the prose runs the full container, which reaches ~90 characters
+	   at tablet widths. The grid caps the measure above the breakpoint; this
+	   caps it below. */
 	.content {
-		grid-column: 2 / 4;
+		max-width: 36rem;
 	}
+
+	/* global.css resets every margin to 0 and nothing restores paragraph rhythm,
+	   so without this the whole page renders as one unbroken block of type.
+	   `em` keeps the spacing tied to the reading size, which grows at 50em. */
+	.content > * + * {
+		margin-block-start: 1.25em;
+	}
+
+	.content > * + .closing {
+		margin-block-start: 2rem;
+	}
+
+	.closing {
+		font-size: var(--text-xl);
+		font-style: italic;
+		color: var(--gray-0);
+	}
+
+	/* h3 in global.css clamps up to 2.625rem, which would dwarf the body copy
+	   these headings sit above. */
+	.content h3 {
+		font-family: var(--font-brand);
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+	}
+
+	.pillars > * + h3 {
+		margin-block-start: 2rem;
+		padding-block-start: 2rem;
+		border-block-start: 1px solid var(--gray-800);
+	}
+
+	/* ====================================================== */
+
+	.arc {
+		list-style: none;
+		padding: 0;
+	}
+
+	.arc-item {
+		position: relative;
+		padding-inline-start: 1.75rem;
+		padding-block-end: 2.5rem;
+		border-inline-start: 1px solid var(--gray-800);
+	}
+
+	/* Terminate the rail at the final marker rather than running past it.
+	   Transparent, not `none`, so the text stays aligned with the items above. */
+	.arc-item:last-child {
+		border-inline-start-color: transparent;
+		padding-block-end: 0;
+	}
+
+	.arc-item::before {
+		content: '';
+		position: absolute;
+		/* Centres the 9px marker on the 1px rail. */
+		inset-inline-start: -4px;
+		top: 0.45em;
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		background: var(--accent-regular);
+	}
+
+	.arc-date {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		letter-spacing: 0.04em;
+		/* --accent-regular is too dark to read on the dark theme's background;
+		   --link-color is the accent token that's tuned for both themes. */
+		color: var(--link-color);
+	}
+
+	.arc-item h3 {
+		margin-block-start: 0.25rem;
+	}
+
+	.arc-item h3 + p {
+		margin-block-start: 0.5rem;
+	}
+
+	.education {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+		border-block-start: 1px solid var(--gray-800);
+		padding-block-start: 1.5rem;
+	}
+
+	/* ====================================================== */
 
 	.content :global(a) {
 		text-decoration: 1px solid underline transparent;
@@ -167,16 +266,35 @@ const aboutHeroImage: string | null = null;
 	@media (min-width: 50em) {
 		.about {
 			display: grid;
-			grid-template-columns: 1fr 60% 1fr;
+			/* Section label | prose. Capping the prose column at 40rem holds the
+			   measure near 65ch; it ran to ~106ch when the content spanned two
+			   columns of a `1fr 60% 1fr` grid. Centred with justify-content rather
+			   than by adding empty gutter tracks — those would contribute their own
+			   column gaps and steal ~80px from the prose at tablet widths. */
+			grid-template-columns: minmax(6rem, 13rem) minmax(0, 40rem);
+			justify-content: center;
+			column-gap: 2.5rem;
+			align-items: start;
 		}
 
+		/* Hero spans both columns so it stays centred on the page. */
 		.about > :global(:first-child) {
-			grid-column-start: 2;
+			grid-column: 1 / -1;
 		}
 
 		section {
 			display: contents;
 			font-size: var(--text-lg);
+		}
+
+		.section-title {
+			grid-column: 1 / 2;
+		}
+
+		.content {
+			grid-column: 2 / 3;
+			/* The prose column already caps the measure here. */
+			max-width: none;
 		}
 	}
 </style>
