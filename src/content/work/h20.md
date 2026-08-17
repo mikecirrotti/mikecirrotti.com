@@ -6,6 +6,9 @@ img_alt: Placeholder project image
 description: |
   Coming soon — project details will be added here.
 tags:
+  # Remove this tag when the real case study replaces this file — it is what
+  # keeps the page out of the sitemap while it is still "Coming soon."
+  # See src/lib/placeholder-work.mjs.
   - Placeholder
 ---
 
