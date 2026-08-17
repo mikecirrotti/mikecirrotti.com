@@ -1,0 +1,63 @@
+# mikecirrotti.com — everything here is public and meant to be read,
+# by people and by machines alike.
+#
+# The blanket rule below already permits every crawler; robots.txt is
+# allow-by-default. The named groups that follow don't change any crawler's
+# behaviour today. They exist so the intent is on the record, and because a
+# named group takes precedence over the wildcard — so if a Disallow ever
+# lands in the "*" group, these agents keep their explicit permission.
+
+User-agent: *
+Allow: /
+
+# --- Answer-time fetchers -------------------------------------------------
+# These retrieve a page while an assistant is composing a reply. This is the
+# group that actually decides whether this site can be cited in an answer.
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+# --- Training-corpus crawlers ---------------------------------------------
+# Slower payoff than the group above, and no say in whether a given answer
+# cites this site — but no reason to keep this writing out of the corpus.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Google-Extended is not a crawler. It is a permission token for Gemini
+# training and grounding; it has no effect on Google Search indexing either
+# way. Listed for completeness, not for traffic.
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://mikecirrotti.com/sitemap-index.xml
