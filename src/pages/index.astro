@@ -99,11 +99,12 @@ const projects = (await getCollection('work'))
 					<Grid variant="small">
 						{
 							[
-								'Eight-figure premium leakage recovery',
+								'Eight-figure premium leakage recovery — reducing what would otherwise have been higher rate increases for customers',
 								'Presented agentic AI prototypes to executive leadership',
 								'Led multi-national AI prototype team',
 								'Developed analytical talent across orgs',
 								'C-suite-sponsored AI feasibility initiative',
+								'Back-to-back internal hackathon winner, Q4 2025 and Q1 2026',
 							].map((item) => (
 								<li class="mention-card">
 									<p>{item}</p>
@@ -294,6 +295,15 @@ const projects = (await getCollection('work'))
 		color: var(--gray-300);
 		background: var(--gradient-subtle);
 		box-shadow: var(--shadow-sm);
+	}
+
+	/* The leakage claim runs about twice the length of the other five; in the
+	   two-column phone grid it wraps to one word per line and stretches its
+	   row-mate to match. Give the first and last cards the full row so the
+	   middle four stay paired. Inert at 50em+, where .grid.small is flex. */
+	.mention-card:first-child,
+	.mention-card:last-child {
+		grid-column: 1 / 3;
 	}
 
 	@media (min-width: 50em) {
