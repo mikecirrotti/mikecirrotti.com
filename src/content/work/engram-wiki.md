@@ -43,7 +43,7 @@ The repository ships intentionally empty — structure, templates, and AI behavi
 
 The style files go beyond formatting rules. They are a layered system designed to accumulate a calibrated picture of your voice over time: how you write (`voice.md`), what makes writing read as machine-generated (`tells.md`), where concision and voice fidelity pull in different directions (`target.md`), and unedited samples of your own real writing as immutable calibration data (`corpus/`).
 
-The system starts mostly empty. A feedback-to-wiki skill extracts conventions from your draft feedback, and a style-audit skill catches gaps on a weekly pass. Over time, the assistant learns how you sound saying it, not just what you want to say.
+The system starts mostly empty. A feedback-to-wiki skill extracts conventions from your draft feedback, and a style-audit skill catches gaps on a weekly pass. Over time, every assistant that reads the wiki learns how you sound saying it, not just what you want to say.
 
 ## Acknowledgements
 
