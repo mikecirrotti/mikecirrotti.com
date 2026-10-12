@@ -1,4 +1,5 @@
 ---
+import { identity } from '../lib/identity';
 import { getCollection } from 'astro:content';
 // Component Imports
 import CallToAction from '../components/CallToAction.astro';
@@ -27,9 +28,9 @@ const projects = (await getCollection('work'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Mike Cirrotti"
-					subtitle="AI Opportunity Translator"
-					tagline="Aligning emerging technology to where it creates business value. Fluent both directions — strategy and build."
+					title={identity.name}
+					subtitle={identity.title}
+					tagline={identity.tagline}
 					align="start"
 				>
 					<div class="roles">

@@ -2,6 +2,7 @@
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { identity } from '../lib/identity';
 
 // About-page hero image. Deliberately absent — do not restore from
 // public/assets/at-work.{jpg,png}. Those are leftover Astro-template stock
@@ -10,7 +11,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const aboutHeroImage: string | null = null;
 ---
 
-<BaseLayout title="About | Mike Cirrotti" description="Mike Cirrotti — AI Opportunity Translator living in the gap between what organizations know and what AI can build.">
+<BaseLayout title="About | Mike Cirrotti" description={`${identity.name} — ${identity.oneLine}`}>
 	<div class="stack gap-20">
 		<main class="wrapper about">
 			<Hero
