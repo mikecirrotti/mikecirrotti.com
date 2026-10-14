@@ -12,7 +12,7 @@ import Footer from '../../components/Footer.astro';
   <body>
     <Nav />
     <main class="wrapper">
-      <div class="preview-note">Draft preview · Audio excerpts not yet added</div>
+      <div class="preview-note">Draft preview · One sample audio excerpt</div>
       <article class="content"><Content /></article>
     </main>
     <Footer />
@@ -31,4 +31,23 @@ import Footer from '../../components/Footer.astro';
   .content :global(p:has(> em:only-child)) { color: var(--gray-400); font-size: var(--text-base); }
   .content :global(a) { text-underline-offset: .2em; }
   @media (max-width: 30em) { .content { font-size: var(--text-base); } }
+
+  .content :global(.learning-files) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-block: 1.5rem; font-size: .95rem; }
+  .content :global(.file-panel) { padding: 1.25rem; border: 1px solid var(--gray-700); border-radius: .75rem; background: var(--gray-999_40); min-width: 0; }
+  .content :global(.file-panel h3) { font-size: 1.2rem; margin: 0 0 1.25rem; }
+  .content :global(.file-tree), .content :global(.file-tree ul) { list-style: none; padding: 0; }
+  .content :global(.file-tree > li + li) { margin-top: 1.25rem; }
+  .content :global(.file-tree ul) { border-left: 1px solid var(--accent-regular); margin: .5rem 0 0 .25rem; padding-left: .9rem; }
+  .content :global(.file-tree ul li) { position: relative; padding-block: .3rem .6rem; }
+  .content :global(.file-tree ul li::before) { content: ''; position: absolute; left: -.9rem; top: 1rem; width: .65rem; border-top: 1px solid var(--accent-regular); }
+  .content :global(.file-tree code) { font-size: .82rem; color: var(--link-color); overflow-wrap: anywhere; }
+  .content :global(.file-tree small) { display: block; font-size: .82rem; line-height: 1.5; color: var(--gray-400); margin-top: .2rem; }
+  .content :global(.file-review) { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-700); font-size: .82rem; }
+  .content :global(.audio-example) { margin-top: 1rem; padding: 1.25rem; border: 1px solid var(--gray-700); border-radius: .75rem; background: var(--gray-999_40); }
+  .content :global(.audio-meta) { font-size: .82rem; color: var(--gray-400); margin-bottom: .75rem; }
+  .content :global(audio) { display: block; width: 100%; min-height: 44px; }
+  .content :global(details) { margin-top: 1rem; font-size: .95rem; }
+  .content :global(summary) { cursor: pointer; color: var(--link-color); }
+  .content :global(details p) { margin-top: .75rem; }
+  @media (max-width: 42em) { .content :global(.learning-files) { grid-template-columns: minmax(0, 1fr); } }
 </style>
