@@ -27,7 +27,7 @@ export default defineConfig({
 	site: 'https://mikecirrotti.com',
 	integrations: [
 		sitemap({
-			filter: (page) => !excludedPaths.some((path) => page.endsWith(path)),
+			filter: (page) => !new URL(page).pathname.startsWith('/preview/') && !excludedPaths.some((path) => page.endsWith(path)),
 		}),
 	],
 });
