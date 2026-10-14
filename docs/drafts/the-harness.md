@@ -84,7 +84,7 @@ The top of a desk and a filing cabinet explain the difference between the curren
 <div class="audio-example">
 <p class="audio-meta">Episode 4 · 19-second excerpt · AI-generated voice</p>
 <audio controls preload="none" aria-label="Working memory versus storage, a 19-second excerpt from The Harness">
-<source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/03577022-2db5-442f-bea7-70ab5d226bfb.mp3" type="audio/mpeg" />
+<source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/8da49755-d704-4a82-abbb-89332f47ddb0.mp3" type="audio/mpeg" />
 Your browser does not support this audio player.
 </audio>
 <details>
