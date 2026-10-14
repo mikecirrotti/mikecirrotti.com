@@ -4,21 +4,16 @@ updated: 2026-10-14
 intendedPath: /work/the-harness/
 ---
 
-<!-- Editorial draft only. Kept outside src/content/work so it is not a published work entry.
-Latest consolidated wording from the October 14 conversation, including five examples and the Engram Wiki connection.
-One preview excerpt from Episode 4 has been cut (source 31.20–50.45 seconds), hosted separately from git, and added with its transcript. Other excerpts remain unproduced. Public use still needs source verification and editorial review.
-Suggested clip passages:
-1. Ep 7: from "The paper's one big idea comes from the design researcher Donald Norman" through "each moved outward."
-2. Ep 4: from "The context window is working memory, not storage" through "pulls just the folders it needs."
-3. Ep 6: from "And then there's the insidious one: how you pick the hard cases" through "can skew easy."
-4. AIR-LLM: the "does it actually work" exchange distinguishing the real mixer from the simulated wireless channel.
-5. OpenAI CFO: the passage about starting with a consequential decision and working backward.
-Sources and the earlier three-clip editorial proposal are in the private wiki's exports/2026-10-14-the-harness-portfolio-proposal.md on chatgpt/the-harness-portfolio-2026-10-14. That proposal predates this consolidated page; this file is the latest page draft.
-Review: no employer/client/internal-system disclosures in page text; no production-engineering ownership or measured learning-gain claims. Voice checker: one heading-density advisory, appropriate to five example cards; one repeated-word advisory retained to preserve the requested draft wording. US-English check clean.
+<!-- Development draft for /preview/the-harness/.
+Five excerpts from the existing recordings; audio is hosted separately from git.
+Clip timings, source links, and asset URLs are recorded in the-harness-clips.json.
+Keep this page out of the production work collection until Mike directs publication.
 -->
 
 # The Harness
 *A personal learning experiment with AI-generated audio*
+
+<nav class="page-links" aria-label="On this page"><a href="#how-the-learning-develops">Process</a><a href="#the-files-behind-the-learning">Files</a><a href="#selected-excerpts">Listen</a></nav>
 
 I use an AI agent to turn questions about AI systems into short audio conversations I can listen to in the morning. The topics follow what I'm trying to understand, from how agents remember information to how their performance gets tested.
 
@@ -69,46 +64,95 @@ After listening or reading, I write back the questions that remain. Those update
 
 ## Selected excerpts
 
-### Why a shopping list changes the task
+<p class="listening-summary">Five excerpts · 3 minutes 23 seconds in total</p>
 
-A familiar example introduces how memory and reusable instructions can change what an AI agent has to do.
+<div class="excerpt-list">
+<section class="excerpt-card" aria-labelledby="excerpt-task">
+<p class="excerpt-kicker">01 <span>Episode 7 · October 13, 2026</span> <span>1:16</span></p>
+<h3 id="excerpt-task">Why a shopping list changes the task</h3>
+<p class="excerpt-description">A familiar example introduces how memory and reusable instructions can change what an AI agent has to do.</p>
+<audio controls preload="metadata" aria-label="Why a shopping list changes the task">
+<source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/20df83b9-7dc2-4d3e-9359-5721b0df8751.mp3" type="audio/mpeg" />
+Your browser does not support this audio player.
+</audio>
+<details>
+<summary>Read the excerpt</summary>
+<p><strong>Jordan:</strong> The paper's one big idea comes from the design researcher Donald Norman: a good external aid doesn't make you smarter. It changes the task into one you can already do. A shopping list doesn't improve your memory. It turns a hard remembering problem into an easy recognizing problem.</p>
+<p><strong>Alex:</strong> So apply that to agents.</p>
+<p><strong>Jordan:</strong> That's exactly what the paper does. An unaided language model faces three chronic problems, each solved not by a better model but by moving the burden out of the model and into infrastructure. First, memory. The context window is finite and everything vanishes between sessions, so teams built persistent memory stores — and recalling the past became retrieving it, the shopping-list move. Second, skills. A model re-derives procedures every time, slightly differently each time, so teams packaged procedures into reusable skill documents — improvising every step became composing pre-tested parts. Third, protocols. Tool calls negotiated through free-form prompting are brittle, so teams wrote explicit contracts for how tools get discovered and invoked — fragile negotiation became structured exchange. Memory, skills, protocols — state, expertise, and interaction, each moved outward.</p>
+</details>
+<p class="excerpt-source"><a href="https://arxiv.org/abs/2604.08224" target="_blank" rel="noopener noreferrer">Read the research review</a></p>
+<p class="excerpt-note">A review of agent infrastructure, rather than a new benchmark.</p>
+</section>
 
-*From "Change the Task, Not the Model," October 13, 2026.*
-
-### Working memory versus storage
-
-The top of a desk and a filing cabinet explain the difference between the current conversation and information stored for later.
-
-*From "The Filing Cabinet and the Librarian," October 12, 2026.*
-
-<div class="audio-example">
-<p class="audio-meta">Episode 4 · 19-second excerpt · AI-generated voice</p>
-<audio controls preload="none" aria-label="Working memory versus storage, a 19-second excerpt from The Harness">
+<section class="excerpt-card" aria-labelledby="excerpt-memory">
+<p class="excerpt-kicker">02 <span>Episode 4 · October 12, 2026</span> <span>0:19</span></p>
+<h3 id="excerpt-memory">Working memory versus storage</h3>
+<p class="excerpt-description">The top of a desk and a filing cabinet explain the difference between the current conversation and information stored for later.</p>
+<audio controls preload="metadata" aria-label="Working memory versus storage">
 <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/8da49755-d704-4a82-abbb-89332f47ddb0.mp3" type="audio/mpeg" />
 Your browser does not support this audio player.
 </audio>
 <details>
 <summary>Read the excerpt</summary>
-<p>The context window is working memory, not storage. Think of it as the top of a desk. The agent only keeps what it's actively thinking about on the desk. Everything durable — memories, commitments, running logs, yesterday's plans — lives in files, in the filing cabinet. And every turn, the agent pulls just the folders it needs.</p>
+<p><strong>Jordan:</strong> The context window is working memory, not storage. Think of it as the top of a desk. The agent only keeps what it's actively thinking about on the desk. Everything durable — memories, commitments, running logs, yesterday's plans — lives in files, in the filing cabinet. And every turn, the agent pulls just the folders it needs.</p>
 </details>
+<p class="excerpt-source"><a href="/work/engram-wiki/">Related project: Engram Wiki</a></p>
+<p class="excerpt-note">An analogy for the agent's file-based memory setup.</p>
+</section>
+
+<section class="excerpt-card" aria-labelledby="excerpt-eval">
+<p class="excerpt-kicker">03 <span>Episode 6 · October 13, 2026</span> <span>0:40</span></p>
+<h3 id="excerpt-eval">Choosing what to test</h3>
+<p class="excerpt-description">A coastline analogy explains how selecting examples from one model's failures can give a misleading picture of performance.</p>
+<audio controls preload="metadata" aria-label="Choosing what to test">
+<source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/50a54220-35c2-46cc-afbf-e4fad6b69059.mp3" type="audio/mpeg" />
+Your browser does not support this audio player.
+</audio>
+<details>
+<summary>Read the excerpt</summary>
+<p><strong>Alex:</strong> And then there's the insidious one: how you pick the hard cases.</p>
+<p><strong>Jordan:</strong> This is my favorite part. Model capability is jagged — picture a coastline, not a flat beach. If you pick hard cases from wherever today's model happens to fail, you're sampling the valleys of one model's coastline. You end up measuring that model's failure fingerprint, not what's actually hard or valuable.</p>
+<p><strong>Alex:</strong> So how should you pick them?</p>
+<p><strong>Jordan:</strong> Because a person judged them hard. You should be able to say why a task is hard before you let it in. Production failures and bug reports are good sources. But even user traffic can mislead — people try what they expect to work, so a sample drawn straight from traffic can skew easy.</p>
+</details>
+<p class="excerpt-source"><a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/" target="_blank" rel="noopener noreferrer">Read Anthropic's evaluation guide</a></p>
+<p class="excerpt-note">The excerpt focuses on choosing representative test cases.</p>
+</section>
+
+<section class="excerpt-card" aria-labelledby="excerpt-air">
+<p class="excerpt-kicker">04 <span>AIR-LLM · October 8, 2026</span> <span>0:31</span></p>
+<h3 id="excerpt-air">Exploring a paper that caught my attention</h3>
+<p class="excerpt-description">I was curious about AIR-LLM's proposal to receive model weights over radio signals. This excerpt separates the physical measurements from the simulated wireless conditions.</p>
+<audio controls preload="metadata" aria-label="Exploring a paper that caught my attention">
+<source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/e7cc7c65-8431-48d1-ab78-e361bd3fc6db.mp3" type="audio/mpeg" />
+Your browser does not support this audio player.
+</audio>
+<details>
+<summary>Read the excerpt</summary>
+<p><strong>Alex:</strong> Alright, but does it actually work, or is this a whiteboard fantasy? What did they measure?</p>
+<p><strong>Jordan:</strong> Good question. Let's separate what's verified from what's still simulation. They tested it two ways. First, on real hardware: they took an actual RF mixer, measured it on the bench, and ran the computations through it. Second, the wireless channel — the air between the tower and the phone — was simulated, using ray-traced models of real streets in Paris and Munich. So: real mixer, simulated airwaves.</p>
+</details>
+<p class="excerpt-source"><a href="https://arxiv.org/abs/2610.00465" target="_blank" rel="noopener noreferrer">Read the AIR-LLM paper</a></p>
+<p class="excerpt-note">The paper combines wired RF-mixer measurements with simulated wireless channels.</p>
+</section>
+
+<section class="excerpt-card" aria-labelledby="excerpt-cfo">
+<p class="excerpt-kicker">05 <span>OpenAI CFO · October 6, 2026</span> <span>0:36</span></p>
+<h3 id="excerpt-cfo">Starting with the decision</h3>
+<p class="excerpt-description">OpenAI's account of its finance experiments prompted a broader question: which decision does a workflow exist to support?</p>
+<audio controls preload="metadata" aria-label="Starting with the decision">
+<source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/07f61f68-41b5-46d0-b29f-19d6605af219.mp3" type="audio/mpeg" />
+Your browser does not support this audio player.
+</audio>
+<details>
+<summary>Read the excerpt</summary>
+<p><strong>Jordan:</strong> Her core move was to stop asking how to make each finance task faster, and start asking which decision the task exists to serve. Begin with a consequential decision, map the data, tools, approvals, and handoffs required to support it, then work backward to figure out which parts the AI can analyze, coordinate, or complete.</p>
+<p><strong>Alex:</strong> That's the big idea. She says the real promise isn't closing the books faster. It's giving finance teams more time to shape what happens next, while the outcome can still change. It's about decision latency, the gap between something changing in the business and a leader being able to act on it.</p>
+</details>
+<p class="excerpt-source"><a href="https://openai.com/index/building-an-ai-native-finance-function/" target="_blank" rel="noopener noreferrer">Read Sarah Friar's account</a></p>
+<p class="excerpt-note">The source describes OpenAI's own work and ambitions.</p>
+</section>
 </div>
 
-### Choosing what to test
-
-A coastline analogy explains how selecting examples from one model's failures can give a misleading picture of performance.
-
-*From "Don't Fool Yourself," October 13, 2026.*
-
-### Exploring a paper that caught my attention
-
-AIR-LLM explores whether model weights could arrive over radio signals, allowing a device to perform parts of the computation without storing the entire model. I was curious about what that might mean for where AI runs. The episode unpacked the proposed mechanism and distinguished the hardware experiment from simulated conditions and infrastructure that doesn't yet exist.
-
-*From "AIR-LLM — The Model That Lives in the Air," October 8, 2026.*
-
-### Starting with the decision
-
-An account of OpenAI's finance experiments prompted a broader question: which decisions are being made with stale information? The episode explored working backward from a decision to the information and workflow needed to support it, while distinguishing the company's ambitions from demonstrated outcomes.
-
-*From "OpenAI's CFO Rebuilt Finance Around AI," October 6, 2026.*
-
-These excerpts use AI-generated voices and scripts. They are selected examples from a personal learning feed, with transcripts and sources available alongside the audio.
+These excerpts use AI-generated voices and scripts. They are selected from my personal learning feed, with transcripts and links to the original material.
