@@ -66,7 +66,7 @@ After listening or reading, I write back the questions that remain. Those update
 <div class="podcast-heading">
 <img src="/assets/the-harness-podcast-cover.webp" width="96" height="96" loading="lazy" decoding="async" alt="The Harness podcast cover: a white blueprint drawing of a robot inside a rectangular frame on a navy grid." />
 <div><h2 id="selected-excerpts">Selected excerpts</h2>
-<p class="listening-summary">Five excerpts · 3 minutes 23 seconds in total</p></div>
+<p class="listening-summary">Five excerpts · 3 minutes 32 seconds in total</p></div>
 </div>
 
 <div class="excerpt-list">
@@ -88,20 +88,20 @@ Your browser does not support this audio player.
 <p class="excerpt-note">A review of agent infrastructure, rather than a new benchmark.</p>
 </section>
 
-<section class="excerpt-card" aria-labelledby="excerpt-memory">
-<p class="excerpt-kicker">02 <span>Episode 4 · October 12, 2026</span> <span>0:19</span></p>
-<h3 id="excerpt-memory">Working memory versus storage</h3>
-<p class="excerpt-description">The top of a desk and a filing cabinet explain the difference between the current conversation and information stored for later.</p>
-<audio controls preload="metadata" aria-label="Working memory versus storage">
-<source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/8da49755-d704-4a82-abbb-89332f47ddb0.mp3" type="audio/mpeg" />
+<section class="excerpt-card" aria-labelledby="excerpt-claude">
+<p class="excerpt-kicker">02 <span>claude.ai performance sprint · October 6, 2026</span> <span>0:28</span></p>
+<h3 id="excerpt-claude">Making claude.ai 3× faster</h3>
+<p class="excerpt-description">An episode I requested about Anthropic's performance sprint, focusing on how engineers directed and reviewed Claude's work.</p>
+<audio controls preload="metadata" aria-label="Making claude.ai 3× faster">
+<source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/44dcd02e-e65f-4f1d-9d9f-3181f1e0904b.mp3" type="audio/mpeg" />
 Your browser does not support this audio player.
 </audio>
 <details>
 <summary>Read the excerpt</summary>
-<p><strong>Jordan:</strong> The context window is working memory, not storage. Think of it as the top of a desk. The agent only keeps what it's actively thinking about on the desk. Everything durable — memories, commitments, running logs, yesterday's plans — lives in files, in the filing cabinet. And every turn, the agent pulls just the folders it needs.</p>
+<p><strong>Alex:</strong> Okay, but here's the part that hooked me. They didn't do it alone. They ran the whole sprint out of a single Slack channel, with Claude in every thread. Claude found the bottlenecks, built the benchmarks, shipped the improvements, and watched every deploy. The humans steered — they set goals, made tradeoffs, approved every change. But Claude did a huge share of the actual work. More than three thousand changes merged in two weeks, and not a single customer-facing incident or rollback.</p>
 </details>
-<p class="excerpt-source"><a href="/work/engram-wiki/">Related project: Engram Wiki</a></p>
-<p class="excerpt-note">An analogy for the agent's file-based memory setup.</p>
+<p class="excerpt-source"><a href="https://claude.dev/blog/how-we-made-claude-ai-faster/" target="_blank" rel="noopener noreferrer">Read how Anthropic made claude.ai faster</a></p>
+<p class="excerpt-note">Anthropic's account of its own two-week sprint.</p>
 </section>
 
 <section class="excerpt-card" aria-labelledby="excerpt-eval">
