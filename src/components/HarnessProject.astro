@@ -1,0 +1,71 @@
+---
+import ContactCTA from './ContactCTA.astro';
+---
+<main class="wrapper">
+  <div class="content">
+    <a class="back-link" href="/work/">← Work</a>
+    <slot />
+  </div>
+</main>
+<ContactCTA />
+<script>
+  document.addEventListener('play', (event) => {
+    const active = event.target;
+    if (!(active instanceof HTMLAudioElement)) return;
+    document.querySelectorAll('audio').forEach((audio) => {
+      if (audio !== active) audio.pause();
+    });
+  }, true);
+</script>
+<style>
+
+
+  main { padding-block: 1rem 5rem; }
+  .content { max-width: 65ch; margin-inline: auto; }
+  .content { font-size: var(--text-md); line-height: 1.7; overflow-wrap: break-word; }
+  .content :global(h1) { font-size: clamp(2.6rem, 7vw, 4.5rem); margin-bottom: 1rem; }
+  .content :global(h2) { font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 3rem 0 1.25rem; }
+  .content :global(h3) { font-size: clamp(1.25rem, 3vw, 1.6rem); margin: 2rem 0 .75rem; }
+  .content :global(p + p) { margin-top: 1.1rem; }
+  .content :global(h1 + p) { font-size: var(--text-lg); margin-bottom: 1.5rem; }
+  .content :global(a) { text-underline-offset: .2em; }
+  .content :global(.page-links) { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; margin-block: 1.5rem 2rem; padding-block: .75rem; border-block: 1px solid var(--gray-700); font-size: .95rem; }
+  .content :global(.learning-files) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-block: 1.5rem; font-size: .95rem; }
+  .content :global(.file-panel) { padding: 1.25rem; border: 1px solid var(--gray-700); border-radius: .75rem; background: var(--gray-999_40); min-width: 0; }
+  .content :global(.file-panel h3) { font-size: 1.2rem; margin: 0 0 1.25rem; }
+  .content :global(.file-tree), .content :global(.file-tree ul) { list-style: none; padding: 0; }
+  .content :global(.file-tree > li + li) { margin-top: 1.25rem; }
+  .content :global(.file-tree ul) { border-left: 1px solid var(--accent-regular); margin: .5rem 0 0 .25rem; padding-left: .9rem; }
+  .content :global(.file-tree ul li) { position: relative; padding-block: .3rem .6rem; }
+  .content :global(.file-tree ul li::before) { content: ''; position: absolute; left: -.9rem; top: 1rem; width: .65rem; border-top: 1px solid var(--accent-regular); }
+  .content :global(.file-tree code) { font-size: .82rem; color: var(--link-color); overflow-wrap: anywhere; }
+  .content :global(.file-tree small) { display: block; font-size: .82rem; line-height: 1.5; color: var(--gray-400); margin-top: .2rem; }
+  .content :global(.file-review) { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-700); font-size: .82rem; }
+  .content :global(.listening-summary) { color: var(--gray-400); font-size: .95rem; margin: -.5rem 0 1.5rem; }
+  .content :global(.excerpt-list) { display: grid; gap: 1.5rem; }
+  .content :global(.excerpt-card) { padding: 1.5rem; border: 1px solid var(--gray-700); border-radius: .75rem; background: var(--gray-999_40); min-width: 0; scroll-margin-top: 1rem; }
+  .content :global(.excerpt-kicker) { display: flex; align-items: baseline; gap: .75rem; color: var(--link-color); font-size: .8rem; font-variant-numeric: tabular-nums; }
+  .content :global(.excerpt-kicker span:first-child) { flex: 1; color: var(--gray-400); }
+  .content :global(.excerpt-card h3) { margin: .75rem 0; }
+  .content :global(.excerpt-description) { font-size: 1rem; margin-bottom: 1rem; }
+  .content :global(audio) { display: block; width: 100%; min-height: 44px; margin-block: 1rem; }
+  :global(.theme-dark) .content :global(audio) { color-scheme: dark; }
+  .content :global(details) { margin-block: 1rem; font-size: .95rem; }
+  .content :global(summary) { cursor: pointer; color: var(--link-color); width: fit-content; padding-block: .25rem; }
+  .content :global(summary:focus-visible), .content :global(a:focus-visible) { outline: 2px solid var(--link-color); outline-offset: 4px; border-radius: .1rem; }
+  .content :global(details p) { margin-top: .85rem; }
+  .content :global(.excerpt-source) { font-size: .88rem; padding-top: 1rem; border-top: 1px solid var(--gray-700); }
+  .content :global(.excerpt-note) { margin-top: .4rem; font-size: .82rem; color: var(--gray-400); }
+  @media (max-width: 42em) { .content :global(.learning-files) { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 30em) { .content { font-size: var(--text-base); } .content :global(.excerpt-card) { padding: 1rem; } .content :global(.excerpt-kicker) { gap: .5rem; font-size: .72rem; } }
+
+  .back-link { display: inline-block; margin-block: 0 1.5rem; font-size: .95rem; text-underline-offset: .2em; }
+  .content :global(.podcast-heading) { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 1.25rem; margin-block: 3rem 1.5rem; }
+  .content :global(.podcast-heading img) { width: 96px; height: 96px; border-radius: .6rem; }
+  .content :global(.podcast-heading h2) { margin: 0 0 .5rem; }
+  .content :global(.podcast-heading .listening-summary) { margin: 0; }
+  @media (max-width: 30em) {
+    .content :global(.podcast-heading) { grid-template-columns: 72px minmax(0, 1fr); gap: 1rem; }
+    .content :global(.podcast-heading img) { width: 72px; height: 72px; }
+  }
+</style>

@@ -1,0 +1,63 @@
+{
+  "status": "published",
+  "updated": "2026-10-14",
+  "page": "/work/the-harness/",
+  "audio_in_git": false,
+  "clips": [
+    {
+      "key": "task",
+      "title": "Why a shopping list changes the task",
+      "episode": "Episode 7 · October 13, 2026",
+      "audio_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/20df83b9-7dc2-4d3e-9359-5721b0df8751.mp3",
+      "source_url": "https://arxiv.org/abs/2604.08224",
+      "excerpt_transcript": "Jordan: The paper's one big idea comes from the design researcher Donald Norman: a good external aid doesn't make you smarter. It changes the task into one you can already do. A shopping list doesn't improve your memory. It turns a hard remembering problem into an easy recognizing problem.\n\nAlex: So apply that to agents.\n\nJordan: That's exactly what the paper does. An unaided language model faces three chronic problems, each solved not by a better model but by moving the burden out of the model and into infrastructure. First, memory. The context window is finite and everything vanishes between sessions, so teams built persistent memory stores — and recalling the past became retrieving it, the shopping-list move. Second, skills. A model re-derives procedures every time, slightly differently each time, so teams packaged procedures into reusable skill documents — improvising every step became composing pre-tested parts. Third, protocols. Tool calls negotiated through free-form prompting are brittle, so teams wrote explicit contracts for how tools get discovered and invoked — fragile negotiation became structured exchange. Memory, skills, protocols — state, expertise, and interaction, each moved outward.",
+      "source_start_seconds": 20.95,
+      "source_end_seconds": 97.2,
+      "duration_seconds": 76.25
+    },
+    {
+      "key": "memory",
+      "title": "Working memory versus storage",
+      "episode": "Episode 4 · October 12, 2026",
+      "audio_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/8da49755-d704-4a82-abbb-89332f47ddb0.mp3",
+      "source_url": "/work/engram-wiki/",
+      "excerpt_transcript": "Jordan: The context window is working memory, not storage. Think of it as the top of a desk. The agent only keeps what it's actively thinking about on the desk. Everything durable — memories, commitments, running logs, yesterday's plans — lives in files, in the filing cabinet. And every turn, the agent pulls just the folders it needs.",
+      "source_start_seconds": 31.2,
+      "source_end_seconds": 50.45,
+      "duration_seconds": 19.25
+    },
+    {
+      "key": "eval",
+      "title": "Choosing what to test",
+      "episode": "Episode 6 · October 13, 2026",
+      "audio_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/50a54220-35c2-46cc-afbf-e4fad6b69059.mp3",
+      "source_url": "https://claude.dev/blog/automating-eval-design-and-hillclimbing/",
+      "excerpt_transcript": "Alex: And then there's the insidious one: how you pick the hard cases.\n\nJordan: This is my favorite part. Model capability is jagged — picture a coastline, not a flat beach. If you pick hard cases from wherever today's model happens to fail, you're sampling the valleys of one model's coastline. You end up measuring that model's failure fingerprint, not what's actually hard or valuable.\n\nAlex: So how should you pick them?\n\nJordan: Because a person judged them hard. You should be able to say why a task is hard before you let it in. Production failures and bug reports are good sources. But even user traffic can mislead — people try what they expect to work, so a sample drawn straight from traffic can skew easy.",
+      "source_start_seconds": 79.88,
+      "source_end_seconds": 120.16,
+      "duration_seconds": 40.28
+    },
+    {
+      "key": "air",
+      "title": "Exploring a paper that caught my attention",
+      "episode": "AIR-LLM · October 8, 2026",
+      "audio_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/e7cc7c65-8431-48d1-ab78-e361bd3fc6db.mp3",
+      "source_url": "https://arxiv.org/abs/2610.00465",
+      "excerpt_transcript": "Alex: Alright, but does it actually work, or is this a whiteboard fantasy? What did they measure?\n\nJordan: Good question. Let's separate what's verified from what's still simulation. They tested it two ways. First, on real hardware: they took an actual RF mixer, measured it on the bench, and ran the computations through it. Second, the wireless channel — the air between the tower and the phone — was simulated, using ray-traced models of real streets in Paris and Munich. So: real mixer, simulated airwaves.",
+      "source_start_seconds": 142.6,
+      "source_end_seconds": 173.94,
+      "duration_seconds": 31.34
+    },
+    {
+      "key": "cfo",
+      "title": "Starting with the decision",
+      "episode": "OpenAI CFO · October 6, 2026",
+      "audio_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/07f61f68-41b5-46d0-b29f-19d6605af219.mp3",
+      "source_url": "https://openai.com/index/building-an-ai-native-finance-function/",
+      "excerpt_transcript": "Jordan: Her core move was to stop asking how to make each finance task faster, and start asking which decision the task exists to serve. Begin with a consequential decision, map the data, tools, approvals, and handoffs required to support it, then work backward to figure out which parts the AI can analyze, coordinate, or complete.\n\nAlex: That's the big idea. She says the real promise isn't closing the books faster. It's giving finance teams more time to shape what happens next, while the outcome can still change. It's about decision latency, the gap between something changing in the business and a leader being able to act on it.",
+      "source_start_seconds": 89.9,
+      "source_end_seconds": 125.74,
+      "duration_seconds": 35.84
+    }
+  ]
+}

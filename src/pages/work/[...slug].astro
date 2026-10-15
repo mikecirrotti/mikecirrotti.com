@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 
 import ContactCTA from '../../components/ContactCTA.astro';
+import HarnessProject from '../../components/HarnessProject.astro';
 import Hero from '../../components/Hero.astro';
 import Icon from '../../components/Icon.astro';
 import Pill from '../../components/Pill.astro';
@@ -27,6 +28,7 @@ const { Content } = await render(entry);
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
+  {entry.id === 'the-harness' ? <HarnessProject><Content /></HarnessProject> : (
 	<div class="stack gap-20">
 		<div class="stack gap-15">
 			<header>
@@ -53,6 +55,7 @@ const { Content } = await render(entry);
 		</div>
 		<ContactCTA />
 	</div>
+  )}
 </BaseLayout>
 
 <style>
