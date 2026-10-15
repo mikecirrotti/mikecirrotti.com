@@ -3,7 +3,6 @@ import ContactCTA from './ContactCTA.astro';
 ---
 <main class="wrapper">
   <div class="content">
-    <a class="back-link" href="/work/">← Work</a>
     <slot />
   </div>
 </main>
@@ -59,7 +58,6 @@ import ContactCTA from './ContactCTA.astro';
   @media (max-width: 42em) { .content :global(.learning-files) { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 30em) { .content { font-size: var(--text-base); } .content :global(.excerpt-card) { padding: 1rem; } .content :global(.excerpt-kicker) { gap: .5rem; font-size: .72rem; } }
 
-  .back-link { display: inline-block; margin-block: 0 1.5rem; font-size: .95rem; text-underline-offset: .2em; }
   .content :global(.podcast-heading) { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 1.25rem; margin-block: 3rem 1.5rem; }
   .content :global(.podcast-heading img) { width: 96px; height: 96px; border-radius: .6rem; }
   .content :global(.podcast-heading h2) { margin: 0 0 .5rem; }

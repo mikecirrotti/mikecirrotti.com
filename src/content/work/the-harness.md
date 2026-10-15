@@ -2,7 +2,7 @@
 title: The Harness
 publishDate: 2026-10-14 00:00:00
 img: /assets/the-harness.svg
-img_alt: Two audio waveforms connect to Markdown documents, with a returning line suggesting how saved context shapes future conversations.
+img_alt: Two audio waveforms connect to Markdown documents, with a line returning from the documents to the audio.
 description: |
   A personal learning experiment with AI-generated audio, open questions, and reference notes preserved in Engram Wiki.
 tags:
@@ -20,27 +20,27 @@ I use an AI agent to turn questions about AI systems into short audio conversati
 
 I'm not an engineer, and part of my learning is getting comfortable with the infrastructure around the model. A useful explanation needs to unpack the terminology and give me an example I can work through.
 
-The format is a conversation between two synthetic hosts. Each episode focuses on one idea, connects it to a practical question, and ends with something to think about.
+Two synthetic hosts discuss one idea per episode and end with an open question.
 
 ## How the learning develops
 
-Sometimes I ask the agent a question about something I'm trying to understand. Other times, I share a paper or article that interests me or raises new questions. It records these in a backlog, alongside context about my interests and learning goals.
+Sometimes I ask the agent a question; other times, I share a paper or article that interests me. It logs these in a backlog and keeps context about what I'm trying to understand.
 
-As I learn, I write back what I'm still confused about and where I want to go deeper. The agent reads those open questions before selecting stories, so upcoming episodes can revisit a difficult concept or connect new material to something we've already covered.
+After listening, I write back what I'm still confused about, including questions raised by other material I encounter. The agent reads those open questions before selecting stories, so an upcoming episode can return to something I haven't understood yet.
 
-Some episodes come from my requested reading; others come from research the agent does around those interests. I direct the learning through questions, reading material, and feedback. The agent handles research and audio production, along with preparing the reference notes.
+The agent also researches topics around those interests. It handles audio production and prepares the reference notes for each episode.
 
 ## Connecting the audio to Engram Wiki
 
-Each episode is accompanied by a transcript, an overview, and source links. These records are prepared with each episode and collected into my wiki through a weekly review.
+The agent prepares a transcript and episode overview with source links, then stages them for a weekly wiki review. After approval, they become part of [Engram Wiki](/work/engram-wiki/), my personal knowledge system and another project on this site.
 
-The reference material becomes part of [Engram Wiki](/work/engram-wiki/), my personal knowledge system and another project featured on this site. The Harness adds material to that collection, giving me something to revisit and providing reference context for future conversations with AI assistants.
+I can revisit those records when I return to a subject, or have a different AI assistant read them as context.
 
-For example, one episode explored the agent's own memory system. A later episode connected that example to a paper about moving information and procedures outside the model. That progression interests me: returning to a familiar example as I learn more about the machinery behind it.
+One episode explored the agent's own memory system. A later episode connected it to a paper about moving information and procedures outside the model, giving me a familiar example to work from.
 
 ## The files behind the learning
 
-The context lives in Markdown files I can inspect and update. The agent's working files hold the questions and episode queue; Engram Wiki preserves the reference material across tools.
+The context lives in Markdown files I can inspect and update. Here's how the working files connect to the wiki.
 
 <div class="learning-files" aria-label="Selected files in the agent workspace and Engram Wiki">
 <section class="file-panel">
@@ -60,8 +60,6 @@ The context lives in Markdown files I can inspect and update. The agent's workin
 <p class="file-review">Prepared records reach the wiki through a weekly batch review and approval.</p>
 </section>
 </div>
-
-After listening or reading, I write back the questions that remain. Those updates help shape the next episode. The wiki records remain available as reference context when I return to the subject, including with a different AI assistant.
 
 <div class="podcast-heading">
 <img src="/assets/the-harness-podcast-cover.webp" width="96" height="96" loading="lazy" decoding="async" alt="The Harness podcast cover: a white blueprint drawing of a robot inside a rectangular frame on a navy grid." />
@@ -85,7 +83,7 @@ Your browser does not support this audio player.
 <p><strong>Jordan:</strong> That's exactly what the paper does. An unaided language model faces three chronic problems, each solved not by a better model but by moving the burden out of the model and into infrastructure. First, memory. The context window is finite and everything vanishes between sessions, so teams built persistent memory stores — and recalling the past became retrieving it, the shopping-list move. Second, skills. A model re-derives procedures every time, slightly differently each time, so teams packaged procedures into reusable skill documents — improvising every step became composing pre-tested parts. Third, protocols. Tool calls negotiated through free-form prompting are brittle, so teams wrote explicit contracts for how tools get discovered and invoked — fragile negotiation became structured exchange. Memory, skills, protocols — state, expertise, and interaction, each moved outward.</p>
 </details>
 <p class="excerpt-source"><a href="https://arxiv.org/abs/2604.08224" target="_blank" rel="noopener noreferrer">Read the research review</a></p>
-<p class="excerpt-note">A review of agent infrastructure, rather than a new benchmark.</p>
+<p class="excerpt-note">The source is a review of agent infrastructure.</p>
 </section>
 
 <section class="excerpt-card" aria-labelledby="excerpt-claude">
@@ -120,14 +118,13 @@ Your browser does not support this audio player.
 <p><strong>Jordan:</strong> Because a person judged them hard. You should be able to say why a task is hard before you let it in. Production failures and bug reports are good sources. But even user traffic can mislead — people try what they expect to work, so a sample drawn straight from traffic can skew easy.</p>
 </details>
 <p class="excerpt-source"><a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/" target="_blank" rel="noopener noreferrer">Read Anthropic's evaluation guide</a></p>
-<p class="excerpt-note">The excerpt focuses on choosing representative test cases.</p>
 </section>
 
 <section class="excerpt-card" aria-labelledby="excerpt-air">
 <p class="excerpt-kicker">04 <span>AIR-LLM · October 8, 2026</span> <span>0:31</span></p>
-<h3 id="excerpt-air">Exploring a paper that caught my attention</h3>
+<h3 id="excerpt-air">AIR-LLM: model weights over radio</h3>
 <p class="excerpt-description">I was curious about AIR-LLM's proposal to receive model weights over radio signals. This excerpt separates the physical measurements from the simulated wireless conditions.</p>
-<audio controls preload="metadata" aria-label="Exploring a paper that caught my attention">
+<audio controls preload="metadata" aria-label="AIR-LLM: model weights over radio">
 <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/e7cc7c65-8431-48d1-ab78-e361bd3fc6db.mp3" type="audio/mpeg" />
 Your browser does not support this audio player.
 </audio>
@@ -143,7 +140,7 @@ Your browser does not support this audio player.
 <section class="excerpt-card" aria-labelledby="excerpt-cfo">
 <p class="excerpt-kicker">05 <span>OpenAI CFO · October 6, 2026</span> <span>0:36</span></p>
 <h3 id="excerpt-cfo">Starting with the decision</h3>
-<p class="excerpt-description">OpenAI's account of its finance experiments prompted a broader question: which decision does a workflow exist to support?</p>
+<p class="excerpt-description">OpenAI's account of its finance experiments led to a discussion of the decision a workflow is meant to support.</p>
 <audio controls preload="metadata" aria-label="Starting with the decision">
 <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KZZbOpFrzVEv4xu2g5sPKdU5c7/07f61f68-41b5-46d0-b29f-19d6605af219.mp3" type="audio/mpeg" />
 Your browser does not support this audio player.
