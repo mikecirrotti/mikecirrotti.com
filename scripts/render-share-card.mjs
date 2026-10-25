@@ -7,7 +7,9 @@
  *   public/og-default.png        1200x630, the preview a messaging app shows for a shared link
  *   public/apple-touch-icon.png  180x180, the iPhone home-screen and fallback preview icon
  *   public/icon-192.png          192x192, for browsers that want a larger icon
- *   public/favicon.ico           32x32 PNG (browsers sniff the format, as the Astro starter's did)
+ *   public/favicon.ico           real ICO containing 16x16, 32x32, and 48x48 PNG images
+ *   public/mc-*                  matching MC-specific URLs for fresh icon discovery
+ *   public/favicon.png           PNG fallback for clients that probe the root
  *
  * The name and title come from src/lib/identity.ts, so a positioning change is still one edit —
  * rerun this script after it. Colors are lifted from src/styles/global.css. Fonts are the site's
@@ -18,6 +20,7 @@
  */
 
 import { spawn } from 'node:child_process';
+import { writeIconFiles } from './icon-files.mjs';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -199,17 +202,13 @@ async function shoot(cdp, profile, html, width, height) {
 
 const fonts = await inlineFonts();
 
-const outputs = [
-	['public/og-default.png', cardHtml(fonts), 1200, 630],
-	['public/apple-touch-icon.png', iconHtml(180, fonts), 180, 180],
-	['public/icon-192.png', iconHtml(192, fonts), 192, 192],
-	['public/favicon.ico', iconHtml(32, fonts), 32, 32],
-];
-
 await withBrowser(async (cdp, profile) => {
-	for (const [rel, html, w, h] of outputs) {
-		const png = await shoot(cdp, profile, html, w, h);
-		writeFileSync(join(ROOT, rel), png);
-		console.log(`wrote ${rel} (${(png.length / 1024).toFixed(1)} KB, ${w}x${h})`);
-	}
+  const card = await shoot(cdp, profile, cardHtml(fonts), 1200, 630);
+  writeFileSync(join(ROOT, 'public/og-default.png'), card);
+  const icons = new Map();
+  for (const size of [16, 32, 48, 180, 192]) {
+    icons.set(size, await shoot(cdp, profile, iconHtml(size, fonts), size, size));
+  }
+  writeIconFiles(ROOT, icons);
+  console.log('wrote share card, MC icons, and standard fallback aliases');
 });
