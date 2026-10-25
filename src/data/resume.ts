@@ -8,6 +8,7 @@ export const career = {
       "summary": "AI product strategy and delivery across the insurance value chain, including multidisciplinary project leadership and hands-on prototyping. I'm not an engineer; I partner with engineering and data science to move capabilities from exploration into production.",
       "highlights": [
         "Identified and championed an agentic capability that gathers public business information to support underwriting research; drove it from prototype through evaluation into production with human review of the results.",
+        "In head-to-head evaluation on identical inputs, the agentic approach more than doubled the rate of finding usable public business information compared with a fixed lookup pipeline.",
         "Advocated for a reusable capability that could support multiple workflows beyond its first application.",
         "Brought outside perspectives and emerging research into practical work, including proposing automated experiments with an agent's instructions and tools."
       ]
