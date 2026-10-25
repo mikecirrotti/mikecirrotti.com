@@ -23,7 +23,7 @@ const projects = (await getCollection('work'))
 // https://docs.astro.build/basics/astro-components/
 ---
 
-<BaseLayout>
+<BaseLayout description={identity.oneLine}>
 	<div class="stack gap-20 lg:gap-48">
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
@@ -35,7 +35,7 @@ const projects = (await getCollection('work'))
 				>
 					<div class="roles">
 						<Pill><Icon icon="rocket-launch" size="1.33em" /> AI Product</Pill>
-						<Pill><Icon icon="strategy" size="1.33em" /> Strategy</Pill>
+						<Pill><Icon icon="strategy" size="1.33em" /> Team Leadership</Pill>
 						<Pill><Icon icon="terminal-window" size="1.33em" /> Analytics</Pill>
 					</div>
 				</Hero>
@@ -49,9 +49,10 @@ const projects = (await getCollection('work'))
 			</header>
 
 			<p class="skills-intro">
-				Most AI projects stall in the gap between what the business needs and
-				what the technology can do. I work both sides of that gap — from
-				executive strategy to the technical build, so the technology earns its place.
+				I work across strategic, analytical, and technical registers to help teams decide
+				what is worth pursuing and get useful solutions into practice. My work spans
+				hands-on exploration and multidisciplinary project leadership, from early ideas
+				through evaluation and into production with engineering and data science partners.
 			</p>
 
 			<Skills />
@@ -67,7 +68,7 @@ const projects = (await getCollection('work'))
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Selected Work</h3>
-					<p>Where I've matched a real problem to the right emerging technology — and built to prove the value.</p>
+					<p>Projects that put emerging technology to practical use.</p>
 				</header>
 
 				<div class="gallery">
@@ -93,7 +94,7 @@ const projects = (await getCollection('work'))
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Impact</h3>
-					<p>A few highlights from my work driving AI, analytics, and strategy initiatives.</p>
+					<p>Results from analytics leadership and AI product work.</p>
 				</header>
 
 				<div class="gallery">
@@ -101,10 +102,10 @@ const projects = (await getCollection('work'))
 						{
 							[
 								'Eight-figure premium leakage recovery — reducing what would otherwise have been higher rate increases for customers',
-								'Presented agentic AI prototypes to executive leadership',
-								'Led multi-national AI prototype team',
-								'Developed analytical talent across orgs',
-								'C-suite-sponsored AI feasibility initiative',
+								'Drove an agentic AI capability from prototype into production',
+								'Led multidisciplinary teams across analytics and AI projects',
+								'Developed analytical talent through hiring and coaching',
+								'Presented agentic AI findings to executive leadership',
 								'Back-to-back internal hackathon winner, Q4 2025 and Q1 2026',
 							].map((item) => (
 								<li class="mention-card">
@@ -284,6 +285,8 @@ const projects = (await getCollection('work'))
 
 	.mention-card {
 		display: flex;
+		min-width: 0;
+		overflow-wrap: anywhere;
 		/* min-height, not height: the longer entries need more than 7rem on
 		   narrow screens and were spilling onto the border. */
 		min-height: 7rem;

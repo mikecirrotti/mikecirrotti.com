@@ -5,11 +5,12 @@
 
 export const identity = {
 	name: 'Mike Cirrotti',
-	title: 'AI Opportunity Translator',
+	title: 'AI Product Strategy & Delivery',
 	tagline:
-		'Aligning emerging technology to where it creates business value. Fluent both directions — strategy and build.',
+		'Turning business problems into useful data and AI solutions with multidisciplinary teams.',
+	footer: 'AI product strategy and delivery, grounded in analytics and insurance.',
 	oneLine:
-		'AI Opportunity Translator living in the gap between what organizations know and what AI can build.',
+		'AI product strategy and delivery, grounded in analytics, insurance expertise, and multidisciplinary team leadership.',
 	contact: {
 		email: 'mikecirrotti@gmail.com',
 		linkedin: 'https://www.linkedin.com/in/mikecirrotti',

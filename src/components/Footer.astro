@@ -1,10 +1,11 @@
 ---
+import { identity } from '../lib/identity';
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
 	<div class="group">
-		<p><em>Analytics translator, now translating AI. Same instinct — the gap just moved.</em></p>
+		<p><em>{identity.footer}</em></p>
 		<p>&copy; {currentYear} Mike Cirrotti</p>
 		<p>Views are my own, not my employer’s.</p>
 	</div>
