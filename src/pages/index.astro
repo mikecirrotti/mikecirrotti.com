@@ -310,6 +310,12 @@ const projects = (await getCollection('work'))
 		grid-column: 1 / 3;
 	}
 
+	@media (max-width: 23em) {
+		.mention-card {
+			grid-column: 1 / -1;
+		}
+	}
+
 	@media (min-width: 50em) {
 		.mention-card {
 			border-radius: 1.5rem;
