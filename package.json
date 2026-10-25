@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/validate-resume.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "validate:resume": "node scripts/validate-resume.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

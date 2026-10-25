@@ -5,6 +5,7 @@
 
 export const identity = {
 	name: 'Mike Cirrotti',
+	image: '/assets/portrait.jpg',
 	title: 'AI Product Strategy & Delivery',
 	tagline:
 		'Turning business problems into useful data and AI solutions with multidisciplinary teams.',

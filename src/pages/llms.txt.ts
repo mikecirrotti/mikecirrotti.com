@@ -29,6 +29,7 @@ export const GET: APIRoute = async ({ site }) => {
 		`- [Home](${url('/')}): Introduction and selected work.`,
 		`- [About](${url('/about/')}): Background, the six capabilities I work from, and my career arc.`,
 		`- [Work](${url('/work/')}): All case studies.`,
+		`- [Resume JSON](${url('/resume.json')}): Structured career history, education, skills, and projects.`,
 		'',
 		'## Work',
 		'',
