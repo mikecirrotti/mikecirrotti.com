@@ -162,5 +162,13 @@ export const career = {
       "date": "2026",
       "summary": "Q1 2026."
     }
+  ],
+  "publications": [
+    {
+      "name": "Language of AI",
+      "publisher": "Register Fluency",
+      "url": "https://registerfluency.com/language-of-ai/",
+      "summary": "Writing that explains AI concepts and tools for people who work with them."
+    }
   ]
 };
