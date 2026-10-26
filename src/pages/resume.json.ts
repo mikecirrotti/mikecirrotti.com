@@ -15,10 +15,6 @@ export const GET: APIRoute = async ({ site }) => {
       summary: entry.data.description.replace(/\s+/g, ' ').trim(),
       url: url(`/work/${entry.id}/`),
       keywords: entry.data.tags,
-      ...(entry.data.links?.length ? {
-        highlights: entry.data.links.map((link) => `${link.name}: ${link.url}`),
-        custom: { mikecirrotti: { links: entry.data.links } },
-      } : {}),
     }));
 
   const resume = {
