@@ -5,9 +5,6 @@ img: /assets/register-fluency.svg
 img_alt: Three mixer knobs labeled by small icons for strategy, analytics and technical build, each turning to a different setting
 description: |
   The site for my writing on AI and data, built by three AI tools working from one shared memory: a private wiki that held the plan and every decision before the first page existed.
-links:
-  - name: Language of AI
-    url: https://registerfluency.com/language-of-ai/
 tags:
   - AI
   - Writing
