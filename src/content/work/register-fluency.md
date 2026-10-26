@@ -5,13 +5,16 @@ img: /assets/register-fluency.svg
 img_alt: Three mixer knobs labeled by small icons for strategy, analytics and technical build, each turning to a different setting
 description: |
   The site for my writing on AI and data, built by three AI tools working from one shared memory: a private wiki that held the plan and every decision before the first page existed.
+links:
+  - name: Language of AI
+    url: https://registerfluency.com/language-of-ai/
 tags:
   - AI
   - Writing
   - Web
 ---
 
-[Register Fluency](https://registerfluency.com) is where I practice explaining ideas from AI and data in language people outside those fields can use, mostly for readers who work near or with these tools rather than build them. Writing the posts is part of how I learn. The site carries two newsletters, *Language of AI* and *Language of Data*.
+[Register Fluency](https://registerfluency.com) is where I practice explaining ideas from AI and data in language people outside those fields can use, mostly for readers who work near or with these tools rather than build them. Writing the posts is part of how I learn. The site carries two newsletters, [*Language of AI*](https://registerfluency.com/language-of-ai/) and *Language of Data*.
 
 The name comes from the example the homepage opens with. A doctor talks through a planned procedure with a colleague, explains it to the patient, and later settles the arrangements with hospital administrators. All three conversations are accurate, and each one is in a different register.
 
