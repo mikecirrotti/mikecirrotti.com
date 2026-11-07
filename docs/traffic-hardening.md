@@ -1,7 +1,7 @@
 # Traffic and publication safeguards
 
 Date: 2026-11-06
-Status: prepared on a review branch; production unchanged
+Status: deployed to production November 7, 2026; release verification below
 Baseline: 3c943f80080085d1a1de7f00cf105895d6fe5dfe
 
 ## Assessment
@@ -57,3 +57,11 @@ The latest branch preview at `https://cd5df711.mikecirrotti-com.pages.dev` passe
 The shared browser was reviewed at measured widths of 340 and 454 CSS pixels, using ordinary browser zoom to exercise the responsive layout. This is a phone-width layout check in desktop Chromium, not a physical-iPhone or touch-device test. All seven HTML pages fit without horizontal overflow; sampled headings, paragraphs, images, and audio controls stayed within the viewport. The error-page text and recovery links remained readable. Mobile menu expansion, navigation, theme switching and persistence, error-page recovery, audio playback, and transcript expansion worked. All five audio clips had decoded media available. No content-policy violations appeared in the captured console.
 
 This completes the outstanding phone-width release review. Mike directed deployment after successful review and checks. No code or style changes were needed after the review; this addition records the evidence. Account-level analytics and preview-access settings remain a separate follow-up and do not block this release.
+
+## Production release — November 7, 2026
+
+Mike directed deployment after the phone-width review and checks passed. Main was fast-forwarded to `f8e51b326acf05530bb02c185636a75933444372`. Cloudflare production deployment `977819fb-15ca-4493-9e62-a59e41fe18a7` succeeded, and [production CI](https://github.com/mikecirrotti/mikecirrotti.com/actions/runs/42368139292) passed.
+
+Live production GET checks verified all four missing-path 404 responses and their intended HTML, enforced security headers, and inline hashes. Home, About, Work, and The Harness returned the expected successful HTML. The portrait, résumé JSON, and AI index retained their types and expected contents. HEAD checks confirmed an HTTP-to-HTTPS redirect on the probe path and a proper 404 on the www host. A separate Python HTTP client returned 403 for the alternate URLs; curl with the inherited network settings established the responses recorded here.
+
+The release needs no Cloudflare account-setting changes. Analytics configuration and preview-access review remain separate follow-ups. This release record changes documentation only; the verified site code, assets, dependencies, and browser policy remain identical to the implementation deployed above.
