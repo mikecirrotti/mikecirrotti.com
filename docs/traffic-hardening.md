@@ -34,3 +34,18 @@ Merge and production deployment await an explicit publication instruction. Befor
 Cloudflare account configuration was not inspected or changed. Later, confirm production tracks main, the output directory is dist, and the build command runs the full checks. Review preview access and retained deployments separately. Noindex does not prevent someone with a preview address from reading it. Check existing analytics before adding any measurement, and compare both sites using the same metric and time window. There is no evidence here requiring paid hosting or broad bot challenges.
 
 References: [Cloudflare serving behavior](https://developers.cloudflare.com/pages/configuration/serving-pages/), [header configuration](https://developers.cloudflare.com/pages/configuration/headers/), and [Astro 7 migration guide](https://docs.astro.build/en/guides/upgrade-to/v7/).
+
+## Verified preview — November 6, 2026
+
+Implementation commit: `14cb0d96e311f4d6e24ebd14f88762666aaa38f3`.
+[Immutable error-page preview](https://dbb1af45.mikecirrotti-com.pages.dev/config/app/.env).
+[GitHub fresh-install verification](https://github.com/mikecirrotti/mikecirrotti.com/actions/runs/42330520395).
+Cloudflare deployment: `dbb1af45-d83a-49c3-8386-a668c7948ab7`.
+
+Fresh GitHub CI passed all ten tests, dependency audit, production build, and hosted checks. Hosted GET checks confirmed HTTP 404, shared error-page content, enforced policy, and inline hashes on a random missing address and the three probe paths. Home, About, Work, and The Harness returned 200 with the expected HTML and headers. The portrait response retained its image type, and the résumé and AI index retained their types and expected contents. The same hosted checks passed from this session.
+
+Desktop browser inspection confirmed readable error-page layout, working recovery navigation, theme switching and persistence after reload, and loaded podcast controls. All five clips had decoded media available; sampled playback advanced successfully. No site content-policy violation messages appeared in the captured console; unrelated browser-extension metadata errors were present.
+
+Local automated Chromium could not launch because this executor denied a Unix socket operation. Browser inspection used the shared cloud browser instead. Phone-sized and physical-iPhone review remain unverified; no mobile-layout change is claimed. The current markup and CSS changes are limited to the error-page recovery area, but the framework migration still warrants a phone check.
+
+Public-copy review found no new personal, employer, or proprietary claims. The error-page copy is brief and voice-clean; a repeated-word signal on the conventional word “page” is intentional. The US-English check passed on the new copy and maintenance documentation. Production remains unchanged. Documentation-only updates after this implementation commit do not change its built HTML, dependencies, or policy.
