@@ -3,17 +3,23 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/validate-resume.mjs",
+    "build": "npm run check:public && astro build && node scripts/validate-resume.mjs && npm run build:csp && npm run check:deploy",
     "preview": "astro preview",
     "astro": "astro",
-    "validate:resume": "node scripts/validate-resume.mjs"
+    "validate:resume": "node scripts/validate-resume.mjs",
+    "build:csp": "node scripts/build-csp.mjs dist",
+    "check:public": "node scripts/check-deploy-artifacts.mjs public",
+    "check:deploy": "node scripts/check-deploy-artifacts.mjs dist --require-404",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
-    "astro": "^6.3.7"
-  }
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.4.7",
+    "parse5": "7.3.0"
+  },
+  "private": true
 }

@@ -3,6 +3,14 @@ import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Not Found" description="404 Error — this page was not found">
-	<Hero title="Page Not Found" tagline="Not found" />
+<BaseLayout title="Page not found · Mike Cirrotti" description="This page could not be found." noindex>
+	<main class="wrapper">
+		<Hero title="Page not found" tagline="This address doesn’t lead to a page on this site." />
+		<p class="recovery"><a href="/">Go home</a> or <a href="/work/">browse my work</a>.</p>
+	</main>
 </BaseLayout>
+
+<style>
+	main { padding-bottom: 4rem; }
+	.recovery { text-align: center; margin-top: 2rem; }
+</style>

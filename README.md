@@ -1,30 +1,29 @@
-# Astro Starter Kit: Portfolio
+# mikecirrotti.com
+
+Personal portfolio built with Astro and published as a static site on Cloudflare Pages.
+
+Use Node 24 (see `.node-version`), then:
 
 ```sh
-npm create astro@latest -- --template portfolio
+npm ci
+npm test
+npm run build
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/portfolio/devcontainer.json)
+`npm run dev` starts local development. `npm run preview` serves the generated site locally; it does not apply Cloudflare's `_headers` rules.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The production build checks `public/` before copying files, validates the generated résumé, generates a browser content policy from the emitted HTML, and checks `dist/` before publication. Publish **dist**, using **npm run build** as the Cloudflare build command. A failed check must stop deployment.
 
-![portfolio](https://user-images.githubusercontent.com/357379/210779178-a98f0fb7-6b1a-4068-894c-8e1403e26654.jpg)
+The content policy permits Google Fonts, the existing podcast media host, and Cloudflare analytics if enabled by the account. It hashes the exact inline scripts/styles in the build. Update and verify the policy when adding external resources. Keep the inline theme initialization working when changing the head.
 
-## 🧞 Commands
+GitHub Actions runs a fresh install, tests, dependency audit, and build. Branch builds also verify the immutable Cloudflare preview when that integration is enabled. Weekly Dependabot proposals require review; they do not merge themselves.
 
-All commands are run from the root of the project, from a terminal:
+After a branch deployment:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```sh
+node scripts/check-hosted-site.mjs https://DEPLOYMENT.mikecirrotti-com.pages.dev
+```
 
-## 👀 Want to learn more?
+This verifies missing paths, security headers, valid pages, the portrait, `/resume.json`, and `/llms.txt`. Browser review should also cover theme changes, navigation, responsive layouts, and podcast playback.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+See [the maintenance record](docs/traffic-hardening.md) for validation and remaining account-level checks.

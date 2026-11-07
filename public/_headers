@@ -1,5 +1,12 @@
+# Build replaces the minimal policy with hashes for the generated HTML.
+# Deploy dist only after npm run build succeeds.
 /*
   Cache-Control: public, no-cache
+  Content-Security-Policy: frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
   Link: </mc-icon-192.png>; rel="icon"; type="image/png"
 
 /_astro/*
@@ -7,3 +14,6 @@
 
 /resume.json
   Content-Type: application/json; charset=utf-8
+
+https://mikecirrotti-com.pages.dev/*
+  X-Robots-Tag: noindex

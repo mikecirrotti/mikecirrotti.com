@@ -25,9 +25,11 @@ export default defineConfig({
 	// Canonical origin. Required for sitemap URLs, absolute canonical links, and
 	// the Sitemap: pointer in public/robots.txt.
 	site: 'https://mikecirrotti.com',
+	// Preserve HTML-aware whitespace across the Astro 7 compiler migration.
+	compressHTML: true,
 	integrations: [
 		sitemap({
-			filter: (page) => !excludedPaths.some((path) => page.endsWith(path)),
+			filter: (page) => !/^\/404(?:\.html)?\/?$/.test(new URL(page).pathname) && !excludedPaths.some((path) => page.endsWith(path)),
 		}),
 	],
 });
