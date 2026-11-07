@@ -49,3 +49,11 @@ Desktop browser inspection confirmed readable error-page layout, working recover
 Local automated Chromium could not launch because this executor denied a Unix socket operation. Browser inspection used the shared cloud browser instead. Phone-sized and physical-iPhone review remain unverified; no mobile-layout change is claimed. The current markup and CSS changes are limited to the error-page recovery area, but the framework migration still warrants a phone check.
 
 Public-copy review found no new personal, employer, or proprietary claims. The error-page copy is brief and voice-clean; a repeated-word signal on the conventional word “page” is intentional. The US-English check passed on the new copy and maintenance documentation. Production remains unchanged. Documentation-only updates after this implementation commit do not change its built HTML, dependencies, or policy.
+
+## Phone-width release review — November 6, 2026
+
+The latest branch preview at `https://cd5df711.mikecirrotti-com.pages.dev` passed CI and Cloudflare hosted checks for commit `9016c04a00dbfb1db60d4aa34511fee887c79a4b`. The only change after the first verified implementation was documentation.
+
+The shared browser was reviewed at measured widths of 340 and 454 CSS pixels, using ordinary browser zoom to exercise the responsive layout. This is a phone-width layout check in desktop Chromium, not a physical-iPhone or touch-device test. All seven HTML pages fit without horizontal overflow; sampled headings, paragraphs, images, and audio controls stayed within the viewport. The error-page text and recovery links remained readable. Mobile menu expansion, navigation, theme switching and persistence, error-page recovery, audio playback, and transcript expansion worked. All five audio clips had decoded media available. No content-policy violations appeared in the captured console.
+
+This completes the outstanding phone-width release review. Mike directed deployment after successful review and checks. No code or style changes were needed after the review; this addition records the evidence. Account-level analytics and preview-access settings remain a separate follow-up and do not block this release.
